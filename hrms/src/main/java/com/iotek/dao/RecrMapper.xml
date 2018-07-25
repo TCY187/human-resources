@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.RecrMapper">
+    <select id="getRecrByState" resultMap="recrMap">
+        SELECT * FROM T_RECR WHERE R_STATE=#{state}
+    </select>
+    <select id="getRecrByStateAndPage" resultMap="recrMap">
+        SELECT R_ID,R_POSITION,R_DEPART,R_SAL,R_DESC,R_NUM,R_STATE,R_TIME FROM (
+        SELECT rownum rn ,r.* from T_RECR r WHERE R_STATE=#{0})a
+        where rn between #{1} and #{2}
+    </select>
+
+    <resultMap id="recrMap" type="com.iotek.model.Recr">
+        <id property="id" column="R_ID"></id>
+        <result property="position" column="R_POSITION"></result>
+        <result property="depart" column="R_DEPART"></result>
+        <result property="sal" column="R_SAL"></result>
+        <result property="desc" column="R_DESC"></result>
+        <result property="num" column="R_NUM"></result>
+        <result property="state" column="R_STATE"></result>
+        <result property="time" column="R_TIME"></result>
+    </resultMap>
+</mapper>

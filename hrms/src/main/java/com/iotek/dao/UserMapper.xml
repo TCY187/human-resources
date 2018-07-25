@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iotek.dao.UserMapper">
+    <insert id="saveUser">
+        INSERT INTO T_USER(U_ID, U_NAME, U_PASS) VALUES (SEQ_T_USER.nextval,#{name},#{pass})
+    </insert>
+
+    <select id="getUserByNameAndPass" resultMap="userMap">
+        SELECT * FROM T_USER WHERE U_NAME=#{name} and U_PASS=#{pass}
+    </select>
+
+    <resultMap id="userMap" type="com.iotek.model.User">
+        <id property="id" column="U_ID"></id>
+        <result property="name" column="U_NAME"></result>
+        <result property="pass" column="U_PASS"></result>
+    </resultMap>
+
+</mapper>
