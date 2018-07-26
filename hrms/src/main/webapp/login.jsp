@@ -45,7 +45,8 @@
     <form action="register1">
         <input type="submit" name="register1" value="注册">
     </form>
-    <span>${error}</span>
+    <span>${logerror}</span>
+    <span>${clogerror}</span>
 </div>
 <%
     List<Recr> recrList = (List<Recr>) session.getAttribute("recrList");
@@ -78,7 +79,7 @@
             <td><%=recrList.get(i).getState()%></td>
             <td><%=recrList.get(i).getTime()%></td>
             <td>
-                <form action="toudi" method="post">
+                <form action="getCV" method="post">
                     <input name="id1" type="hidden" value="1">
                     <input type="submit" value="投递">
                 </form>

@@ -23,7 +23,7 @@ public class UserController {
             session.setAttribute("user",user1);
             return "success";
         }else {
-            model.addAttribute("error","用户名或密码错误");
+            model.addAttribute("logerror","用户名或密码错误");
             return "../../login";
         }
     }
@@ -39,7 +39,7 @@ public class UserController {
             session.setAttribute("user",user);
             return "success";
         }else {
-            model.addAttribute("error","用户名重复，注册失败");
+            model.addAttribute("regerror","用户名重复，注册失败");
             return "register";
         }
     }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.CVMapper">
+    <select id="getCVByUid" resultMap="cvMap">
+        SELECT * from T_CV where CV_UID=#{user.id}
+    </select>
+
+    <resultMap id="cvMap" type="com.iotek.model.CV">
+        <id property="id" column="CV_ID"></id>
+        <result property="uname" column="CV_UNAME"></result>
+        <result property="sex" column="CV_SEX"></result>
+        <result property="birth" column="CV_BIRTH"></result>
+        <result property="bp" column="CV_BP"></result>
+        <result property="edu" column="CV_EDU"></result>
+        <result property="major" column="CV_MAJOR"></result>
+        <result property="email" column="CV_EMAIL"></result>
+        <result property="phone" column="CV_PHONE"></result>
+        <result property="school" column="CV_SCHOOL"></result>
+        <result property="hobg" column="CV_HOBG"></result>
+        <result property="selfeval" column="CV_SELFEVAL"></result>
+        <result property="cvname" column="CV_CVNAME"></result>
+        <association property="user" javaType="com.iotek.model.User">
+            <id property="id" column="U_ID"></id>
+            <result property="name" column="U_NAME"></result>
+            <result property="pass" column="U_PASS"></result>
+        </association>
+    </resultMap>
+</mapper>

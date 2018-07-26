@@ -71,7 +71,7 @@
     <input id="woman" type="radio" name="sex" value="女"/>女<br/>
     <input type="submit" value="注册">
 </form>
-<span>${error}</span>
+<span>${regerror}</span>
 </div>
 </body>
 </html>

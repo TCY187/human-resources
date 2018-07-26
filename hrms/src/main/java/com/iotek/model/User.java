@@ -1,5 +1,7 @@
 package com.iotek.model;
 
+import java.util.List;
+
 /**
  * Created by TCY on 2018/7/25.
  */
@@ -7,6 +9,7 @@ public class User {
     private Integer id;
     private String name;
     private String pass;
+    private List<CV> cvList;
 
     public User() {
     }
@@ -41,6 +44,13 @@ public class User {
         this.pass = pass;
     }
 
+    public List<CV> getCvList() {
+        return cvList;
+    }
+
+    public void setCvList(List<CV> cvList) {
+        this.cvList = cvList;
+    }
 
     @Override
     public String toString() {
@@ -48,6 +58,7 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", pass='" + pass + '\'' +
+                ", cvList=" + cvList +
                 '}';
     }
 }
