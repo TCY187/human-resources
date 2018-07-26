@@ -1,8 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.dao.CVMapper">
+    <insert id="saveCV">
+        INSERT into T_CV(CV_ID, CV_UNAME, CV_SEX, CV_BIRTH, CV_BP, CV_EDU, CV_MAJOR, CV_EMAIL,
+        CV_PHONE, CV_SCHOOL, CV_HOBG, CV_SELFEVAL, CV_UID, CV_CVNAME) VALUES
+        (SEQ_T_CV.nextval,#{uname},#{sex},#{birth},#{bp},#{edu},#{major},#{email},#{phone},#{school},
+        #{hobg},#{selfeval},#{user.id},#{cvname})
+    </insert>
+    <delete id="deleteCVByCVid">
+        DELETE FROM T_CV where CV_ID=#{CVid}
+    </delete>
     <select id="getCVByUid" resultMap="cvMap">
-        SELECT * from T_CV where CV_UID=#{user.id}
+        SELECT * from T_CV where CV_UID=#{uid}
+    </select>
+    <select id="getCVByUidAndPage" resultMap="cvMap">
+        SELECT CV_ID,CV_UNAME,CV_SEX,CV_BIRTH,CV_BP,CV_EDU,CV_MAJOR,CV_EMAIL,CV_PHONE,CV_SCHOOL,CV_HOBG
+         ,CV_SELFEVAL,CV_UID,CV_CVNAME from (
+        SELECT rownum rn,cv.* from T_CV cv where CV_UID=#{0})a
+        where rn between #{1} and #{2}
+    </select>
+    <select id="getCVByCVid" resultMap="cvMap">
+        SELECT * from T_CV where CV_ID=#{CVid}
     </select>
 
     <resultMap id="cvMap" type="com.iotek.model.CV">

@@ -80,7 +80,7 @@
             <td><%=recrList.get(i).getTime()%></td>
             <td>
                 <form action="getCV" method="post">
-                    <input name="id1" type="hidden" value="1">
+                    <input type="hidden" name="rid" value="<%=recrList.get(i).getId()%>">
                     <input type="submit" value="投递">
                 </form>
             </td>

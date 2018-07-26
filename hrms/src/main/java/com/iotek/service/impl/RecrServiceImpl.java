@@ -22,4 +22,8 @@ public class RecrServiceImpl implements RecrService{
     public List<Recr> getRecrByStateAndPage(int state, int begin, int end) {
         return recrMapper.getRecrByStateAndPage(state, begin, end);
     }
+
+    public Recr getRecrByRid(int rid) {
+        return recrMapper.getRecrByRid(rid);
+    }
 }

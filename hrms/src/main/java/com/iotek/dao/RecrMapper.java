@@ -10,4 +10,5 @@ import java.util.List;
 public interface RecrMapper {
     List<Recr> getRecrByStateAndPage(int state,int begin,int end);
     List<Recr> getRecrByState(int state);
+    Recr getRecrByRid(int rid);
 }

@@ -9,6 +9,9 @@
         SELECT rownum rn ,r.* from T_RECR r WHERE R_STATE=#{0})a
         where rn between #{1} and #{2}
     </select>
+    <select id="getRecrByRid" resultMap="recrMap">
+        SELECT * FROM T_RECR WHERE R_ID=#{rid}
+    </select>
 
     <resultMap id="recrMap" type="com.iotek.model.Recr">
         <id property="id" column="R_ID"></id>

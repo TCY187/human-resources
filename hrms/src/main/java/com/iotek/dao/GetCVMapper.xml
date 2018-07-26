@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.GetCVMapper">
+    <insert id="saveGetCV">
+        INSERT into T_GCV(G_ID, G_CVID,G_RID, G_STATE) VALUES(SEQ_T_GCV.nextval,#{0},#{1},0)
+    </insert>
+</mapper>

@@ -17,7 +17,23 @@ public class CVServiceImpl implements CVService {
     @Resource
     private CVMapper cvMapper;
 
-    public List<CV> getCVByUid(User user) {
-        return cvMapper.getCVByUid(user);
+    public List<CV> getCVByUid(int uid) {
+        return cvMapper.getCVByUid(uid);
+    }
+
+    public List<CV> getCVByUidAndPage(int uid, int begin, int end) {
+        return cvMapper.getCVByUidAndPage(uid,begin,end);
+    }
+
+    public CV getCVByCVid(int CVid) {
+        return cvMapper.getCVByCVid(CVid);
+    }
+
+    public boolean deleteCVByCVid(int CVid) {
+        return cvMapper.deleteCVByCVid(CVid);
+    }
+
+    public boolean saveCV(CV cv) {
+        return cvMapper.saveCV(cv);
     }
 }
