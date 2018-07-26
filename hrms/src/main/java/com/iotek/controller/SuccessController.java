@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class SuccessController {
-    @RequestMapping("/success")
+    @RequestMapping("/success1")
     public String success(){
         return "../../login";
     }

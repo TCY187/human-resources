@@ -21,7 +21,8 @@ public class UserController {
         User user1 = userService.getUserByNameAndPass(user);
         if (null!=user1){
             session.setAttribute("user",user1);
-            return "success";
+            model.addAttribute("logerror","欢迎你，");
+            return "../../login";
         }else {
             model.addAttribute("logerror","用户名或密码错误");
             return "../../login";

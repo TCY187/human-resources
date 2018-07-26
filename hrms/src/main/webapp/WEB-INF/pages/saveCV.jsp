@@ -55,7 +55,7 @@
         </table>
         <input type="submit" value="确认添加">
     </form>
-    <a href="success">返回主页</a>
+    <a href="success1">返回首页</a>
 </div>
 </body>
 </html>

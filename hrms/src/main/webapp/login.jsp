@@ -1,5 +1,6 @@
 <%@ page import="com.iotek.model.Recr" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.iotek.model.User" %><%--
   Created by IntelliJ IDEA.
   User: TCY
   Date: 2018/7/25
@@ -35,15 +36,28 @@
     </style>
 </head>
 <body>
+<%
+    User user = (User) session.getAttribute("user");
+%>
 <div id="d1">
-    <h1>用户登录</h1>
+    <h2>游客登录</h2>
     <form action="login" method="post">
-        账号：<input id="i1" type="text" name="name"/><br/>
-        密码：<input id="i2" type="password" name="pass"/><br/>
-        <input id="i3" type="submit" value="登录">
+        账号：<input type="text" name="name"/><br/>
+        密码：<input type="password" name="pass"/><br/>
+        <input type="submit" value="登录">
     </form>
     <form action="register1">
         <input type="submit" name="register1" value="注册">
+    </form>
+    <span>${logerror}<%=user.getName()%></span>
+    <span>${clogerror}</span>
+</div>
+<div id="d1">
+    <h2>员工登录</h2>
+    <form action="emplogin" method="post">
+        账号：<input type="text" name="name"/><br/>
+        密码：<input type="password" name="pass"/><br/>
+        <input type="submit" value="登录">
     </form>
     <span>${logerror}</span>
     <span>${clogerror}</span>
