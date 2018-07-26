@@ -14,4 +14,5 @@ public interface CVMapper {
     CV getCVByCVid(int CVid);
     boolean deleteCVByCVid(int CVid);
     boolean saveCV(CV cv);
+    boolean updateCV(CV cv);
 }

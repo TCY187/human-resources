@@ -19,40 +19,40 @@
 <div id="div1">
     <form action="saveCV1" method="post">
     <h1><input type="text" name="cvname"></h1>
-    <table border="1" cellspacing="0">
-        <tr>
-            <th>姓名</th>
-            <th><input type="text" name="uname"></th>
-            <th>性别</th>
-            <th><input type="text" name="sex"></th>
-            <%--<th>出生日期</th>--%>
-            <%--<th><input type="date" name="birth"></th>--%>
-        </tr>
-        <tr>
-            <th>籍贯</th>
-            <th><input type="text" name="bp"></th>
-            <th>邮箱</th>
-            <th><input type="text" name="email"></th>
-            <th>联系电话</th>
-            <th><input type="text" name="phone"></th>
-        </tr>
-        <tr>
-            <th>学历</th>
-            <th><input type="text" name="edu"></th>
-            <th>毕业学校</th>
-            <th><input type="text" name="school"></th>
-            <th>专业</th>
-            <th><input type="text" name="major"></th>
-        </tr>
-        <tr>
-            <th>工作经验</th>
-            <th colspan="5"><input type="text" name="hobg"></th>
-        </tr>
-        <tr>
-            <th>自我评价</th>
-            <th colspan="5"><input type="text" name="selfeval"></th>
-        </tr>
-    </table>
+        <table border="1" cellspacing="0">
+            <tr>
+                <th>姓名</th>
+                <th><input type="text" name="uname"></th>
+                <th>性别</th>
+                <th><input type="text" name="sex"></th>
+                <th>出生日期</th>
+                <th><input type="date" name="birth1"></th>
+            </tr>
+            <tr>
+                <th>籍贯</th>
+                <th><input type="text" name="bp"></th>
+                <th>邮箱</th>
+                <th><input type="text" name="email"></th>
+                <th>联系电话</th>
+                <th><input type="text" name="phone"></th>
+            </tr>
+            <tr>
+                <th>学历</th>
+                <th><input type="text" name="edu"></th>
+                <th>毕业学校</th>
+                <th><input type="text" name="school"></th>
+                <th>专业</th>
+                <th><input type="text" name="major"></th>
+            </tr>
+            <tr>
+                <th>工作经验</th>
+                <th colspan="5"><input type="text" name="hobg"></th>
+            </tr>
+            <tr>
+                <th>自我评价</th>
+                <th colspan="5"><input type="text" name="selfeval"></th>
+            </tr>
+        </table>
         <input type="submit" value="确认添加">
     </form>
     <a href="success">返回主页</a>

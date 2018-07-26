@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -71,10 +74,35 @@ public class CVController {
         return "saveCV";
     }
     @RequestMapping("/saveCV1")
-    public String saveCV1(CV cv,HttpSession session,@RequestParam(value = "currentPage",defaultValue = "1")int currentPage){
+    public String saveCV1(String birth1,CV cv,HttpSession session,@RequestParam(value = "currentPage",defaultValue = "1")int currentPage) throws ParseException{
         User user = (User) session.getAttribute("user");
+        System.out.println(birth1);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date birth = sdf.parse(birth1);
+        cv.setBirth(birth);
         cv.setUser(user);
+        System.out.println(cv);
         boolean flag = cvService.saveCV(cv);
+        List<CV> cvList = cvService.getCVByUid(user.getId());
+        int totalNum=cvList.size();
+        int pageSize=5;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int begin = (currentPage-1)*pageSize+1;
+        int end = (currentPage-1)*pageSize+pageSize;
+        List<CV> cvList1 = cvService.getCVByUidAndPage(user.getId(),begin,end);
+        session.setAttribute("cvList",cvList1);
+        session.setAttribute("cvtotalPages",totalPages);
+        return "listCV";
+    }
+    @RequestMapping("/updateCV")
+    public String updateCV(int CVId,String birth1,CV cv,HttpSession session,@RequestParam(value = "currentPage",defaultValue = "1")int currentPage) throws ParseException{
+        User user = (User) session.getAttribute("user");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        Date birth = sdf.parse(birth1);
+        cv.setId(CVId);
+        cv.setBirth(birth);
+        cv.setUser(user);
+        boolean flag = cvService.updateCV(cv);
         List<CV> cvList = cvService.getCVByUid(user.getId());
         int totalNum=cvList.size();
         int pageSize=5;

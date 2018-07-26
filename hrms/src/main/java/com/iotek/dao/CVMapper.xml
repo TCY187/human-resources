@@ -7,6 +7,11 @@
         (SEQ_T_CV.nextval,#{uname},#{sex},#{birth},#{bp},#{edu},#{major},#{email},#{phone},#{school},
         #{hobg},#{selfeval},#{user.id},#{cvname})
     </insert>
+    <update id="updateCV">
+        UPDATE T_CV SET CV_UNAME=#{uname},CV_SEX=#{sex},CV_BIRTH=#{birth},CV_BP=#{bp},CV_EDU=#{edu},
+        CV_MAJOR=#{major},CV_EMAIL=#{email},CV_PHONE=#{phone},CV_SCHOOL=#{school},CV_HOBG=#{hobg}
+         ,CV_SELFEVAL=#{selfeval},CV_CVNAME=#{cvname} where CV_ID=#{id}
+    </update>
     <delete id="deleteCVByCVid">
         DELETE FROM T_CV where CV_ID=#{CVid}
     </delete>

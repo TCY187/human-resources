@@ -36,4 +36,8 @@ public class CVServiceImpl implements CVService {
     public boolean saveCV(CV cv) {
         return cvMapper.saveCV(cv);
     }
+
+    public boolean updateCV(CV cv) {
+        return cvMapper.updateCV(cv);
+    }
 }
