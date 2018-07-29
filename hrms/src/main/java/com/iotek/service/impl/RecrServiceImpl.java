@@ -26,4 +26,16 @@ public class RecrServiceImpl implements RecrService{
     public Recr getRecrByRid(int rid) {
         return recrMapper.getRecrByRid(rid);
     }
+
+    public List<Recr> getRecrByPage(int begin, int end) {
+        return recrMapper.getRecrByPage(begin, end);
+    }
+
+    public List<Recr> getRecr() {
+        return recrMapper.getRecr();
+    }
+
+    public boolean deleteRecrByRid(int rid) {
+        return recrMapper.deleteRecrByRid(rid);
+    }
 }

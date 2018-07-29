@@ -35,4 +35,12 @@ public class InterviewServiceImpl implements InterviewService {
     public List<Interview> getInterviewByStateAndUidAndPage(int state, int uid, int begin, int end) {
         return interviewMapper.getInterviewByStateAndUidAndPage(state, uid, begin, end);
     }
+
+    public boolean updateIntState(Interview interview) {
+        return interviewMapper.updateIntState(interview);
+    }
+
+    public Interview getIntById(int IId) {
+        return interviewMapper.getIntById(IId);
+    }
 }

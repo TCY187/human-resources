@@ -19,5 +19,11 @@
 <form action="getGetCV" method="post">
     <input type="submit" value="查看简历">
 </form>
+<form action="getmanInt" method="post">
+    <input type="submit" value="查看面试">
+</form>
+<form action="getRecr" method="post">
+    <input type="submit" value="查看招聘信息">
+</form>
 </body>
 </html>

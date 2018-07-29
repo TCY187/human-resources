@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.dao.RecrMapper">
+    <delete id="deleteRecrByRid">
+        DELETE FROM T_RECR WHERE R_ID=#{rid}
+    </delete>
     <select id="getRecrByState" resultMap="recrMap">
         SELECT * FROM T_RECR WHERE R_STATE=#{state}
     </select>
@@ -11,6 +14,14 @@
     </select>
     <select id="getRecrByRid" resultMap="recrMap">
         SELECT * FROM T_RECR WHERE R_ID=#{rid}
+    </select>
+    <select id="getRecrByPage" resultMap="recrMap">
+        SELECT R_ID,R_PID,R_DID,R_DESC,R_NUM,R_STATE,R_TIME FROM (
+        SELECT rownum rn ,r.* from T_RECR r)a
+        where rn between #{0} and #{1}
+    </select>
+    <select id="getRecr" resultMap="recrMap">
+        SELECT * FROM T_RECR
     </select>
 
     <resultMap id="recrMap" type="com.iotek.model.Recr">

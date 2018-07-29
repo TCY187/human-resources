@@ -6,6 +6,9 @@
         SEQ_T_INTERVIEW.nextval,#{user.id},#{recr.id},#{state},#{address},#{remarks}
         )
     </insert>
+    <update id="updateIntState">
+        UPDATE T_INTERVIEW SET I_STATE=#{state} where I_ID=#{id}
+    </update>
     <select id="getInterviewByState" resultMap="intMap">
         SELECT * FROM T_INTERVIEW WHERE I_STATE=#{state}
     </select>
@@ -21,6 +24,9 @@
         SELECT I_ID,I_UID,I_RID,I_STATE,I_ADDRESS,I_REMARKS FROM (
         SELECT rownum rn ,i.* from T_INTERVIEW i WHERE I_STATE=#{0} and I_UID=#{1})a
         where rn between #{2} and #{3}
+    </select>
+    <select id="getIntById" resultMap="intMap">
+        SELECT * FROM T_INTERVIEW WHERE I_ID=#{IId}
     </select>
     <resultMap id="intMap" type="com.iotek.model.Interview">
         <id property="id" column="I_ID"></id>

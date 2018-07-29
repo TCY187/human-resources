@@ -11,4 +11,7 @@ public interface RecrMapper {
     List<Recr> getRecrByStateAndPage(int state,int begin,int end);
     List<Recr> getRecrByState(int state);
     Recr getRecrByRid(int rid);
+    List<Recr> getRecrByPage(int begin,int end);
+    List<Recr> getRecr();
+    boolean deleteRecrByRid(int rid);
 }

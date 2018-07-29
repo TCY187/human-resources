@@ -13,4 +13,6 @@ public interface InterviewService {
     List<Interview> getInterviewByStateAndPage(int state,int begin,int end);
     List<Interview> getInterviewByStateAndUid(int state,int uid);
     List<Interview> getInterviewByStateAndUidAndPage(int state,int uid,int begin,int end);
+    boolean updateIntState(Interview interview);
+    Interview getIntById(int IId);
 }
