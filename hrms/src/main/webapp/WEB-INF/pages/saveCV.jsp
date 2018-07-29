@@ -45,6 +45,14 @@
                 <th><input type="text" name="major"></th>
             </tr>
             <tr>
+                <th>身份证</th>
+                <th><input type="text" name="cardno" ></th>
+                <th>邮编</th>
+                <th><input type="text" name="zp" ></th>
+                <th>技能</th>
+                <th><input type="text" name="skill"></th>
+            </tr>
+            <tr>
                 <th>工作经验</th>
                 <th colspan="5"><input type="text" name="hobg"></th>
             </tr>

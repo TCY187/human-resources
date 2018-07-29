@@ -7,9 +7,8 @@ import java.util.Date;
  */
 public class Recr {
     private Integer id;
-    private String position;
-    private String depart;
-    private Double sal;
+    private Position position;
+    private Depa depa;
     private String desc;
     private Integer num;
     private Integer state;
@@ -18,16 +17,6 @@ public class Recr {
     public Recr() {
     }
 
-    public Recr(Integer id, String position, String depart, Double sal, String desc, Integer num, Integer state, Date time) {
-        this.id = id;
-        this.position = position;
-        this.depart = depart;
-        this.sal = sal;
-        this.desc = desc;
-        this.num = num;
-        this.state = state;
-        this.time = time;
-    }
 
     public Integer getId() {
         return id;
@@ -37,28 +26,20 @@ public class Recr {
         this.id = id;
     }
 
-    public String getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(String position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
-    public String getDepart() {
-        return depart;
+    public Depa getDepa() {
+        return depa;
     }
 
-    public void setDepart(String depart) {
-        this.depart = depart;
-    }
-
-    public Double getSal() {
-        return sal;
-    }
-
-    public void setSal(Double sal) {
-        this.sal = sal;
+    public void setDepa(Depa depa) {
+        this.depa = depa;
     }
 
     public String getDesc() {
@@ -93,13 +74,13 @@ public class Recr {
         this.time = time;
     }
 
+
     @Override
     public String toString() {
         return "Recr{" +
                 "id=" + id +
-                ", position='" + position + '\'' +
-                ", depart='" + depart + '\'' +
-                ", sal=" + sal +
+                ", position=" + position +
+                ", depa=" + depa +
                 ", desc='" + desc + '\'' +
                 ", num=" + num +
                 ", state=" + state +

@@ -5,7 +5,7 @@
         SELECT * FROM T_RECR WHERE R_STATE=#{state}
     </select>
     <select id="getRecrByStateAndPage" resultMap="recrMap">
-        SELECT R_ID,R_POSITION,R_DEPART,R_SAL,R_DESC,R_NUM,R_STATE,R_TIME FROM (
+        SELECT R_ID,R_PID,R_DID,R_DESC,R_NUM,R_STATE,R_TIME FROM (
         SELECT rownum rn ,r.* from T_RECR r WHERE R_STATE=#{0})a
         where rn between #{1} and #{2}
     </select>
@@ -15,12 +15,20 @@
 
     <resultMap id="recrMap" type="com.iotek.model.Recr">
         <id property="id" column="R_ID"></id>
-        <result property="position" column="R_POSITION"></result>
-        <result property="depart" column="R_DEPART"></result>
-        <result property="sal" column="R_SAL"></result>
         <result property="desc" column="R_DESC"></result>
         <result property="num" column="R_NUM"></result>
         <result property="state" column="R_STATE"></result>
         <result property="time" column="R_TIME"></result>
+        <association property="position" javaType="com.iotek.model.Position">
+            <id property="id" column="P_ID"></id>
+            <result property="pname" column="P_PNAME"></result>
+            <result property="jsal" column="P_JSAL"></result>
+            <result property="pf" column="P_PF"></result>
+        </association>
+        <association property="depa" javaType="com.iotek.model.Depa">
+            <id property="id" column="D_ID"></id>
+            <result property="dname" column="D_DNAME"></result>
+            <result property="time" column="D_TIME"></result>
+        </association>
     </resultMap>
 </mapper>

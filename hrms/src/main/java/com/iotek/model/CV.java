@@ -20,6 +20,9 @@ public class CV {
     private String selfeval;
     private User user;
     private String cvname;
+    private String cardno;
+    private String skill;
+    private String zp;
 
     public CV() {
     }
@@ -136,6 +139,30 @@ public class CV {
         this.cvname = cvname;
     }
 
+    public String getCardno() {
+        return cardno;
+    }
+
+    public void setCardno(String cardno) {
+        this.cardno = cardno;
+    }
+
+    public String getSkill() {
+        return skill;
+    }
+
+    public void setSkill(String skill) {
+        this.skill = skill;
+    }
+
+    public String getZp() {
+        return zp;
+    }
+
+    public void setZp(String zp) {
+        this.zp = zp;
+    }
+
     @Override
     public String toString() {
         return "CV{" +
@@ -153,7 +180,9 @@ public class CV {
                 ", selfeval='" + selfeval + '\'' +
                 ", user=" + user +
                 ", cvname='" + cvname + '\'' +
+                ", cardno='" + cardno + '\'' +
+                ", skill='" + skill + '\'' +
+                ", zp='" + zp + '\'' +
                 '}';
     }
-
 }

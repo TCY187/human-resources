@@ -3,14 +3,15 @@
 <mapper namespace="com.iotek.dao.CVMapper">
     <insert id="saveCV">
         INSERT into T_CV(CV_ID, CV_UNAME, CV_SEX, CV_BIRTH, CV_BP, CV_EDU, CV_MAJOR, CV_EMAIL,
-        CV_PHONE, CV_SCHOOL, CV_HOBG, CV_SELFEVAL, CV_UID, CV_CVNAME) VALUES
+        CV_PHONE, CV_SCHOOL, CV_HOBG, CV_SELFEVAL, CV_UID, CV_CVNAME,CV_CARDNO,CV_SKILL,CV_ZP) VALUES
         (SEQ_T_CV.nextval,#{uname},#{sex},#{birth},#{bp},#{edu},#{major},#{email},#{phone},#{school},
-        #{hobg},#{selfeval},#{user.id},#{cvname})
+        #{hobg},#{selfeval},#{user.id},#{cvname},#{cardno},#{skill},#{zp})
     </insert>
     <update id="updateCV">
         UPDATE T_CV SET CV_UNAME=#{uname},CV_SEX=#{sex},CV_BIRTH=#{birth},CV_BP=#{bp},CV_EDU=#{edu},
         CV_MAJOR=#{major},CV_EMAIL=#{email},CV_PHONE=#{phone},CV_SCHOOL=#{school},CV_HOBG=#{hobg}
-         ,CV_SELFEVAL=#{selfeval},CV_CVNAME=#{cvname} where CV_ID=#{id}
+         ,CV_SELFEVAL=#{selfeval},CV_CVNAME=#{cvname},CV_CARDNO=#{cardno},
+         CV_SKILL=#{skill},CV_ZP=#{zp} where CV_ID=#{id}
     </update>
     <delete id="deleteCVByCVid">
         DELETE FROM T_CV where CV_ID=#{CVid}
@@ -20,7 +21,7 @@
     </select>
     <select id="getCVByUidAndPage" resultMap="cvMap">
         SELECT CV_ID,CV_UNAME,CV_SEX,CV_BIRTH,CV_BP,CV_EDU,CV_MAJOR,CV_EMAIL,CV_PHONE,CV_SCHOOL,CV_HOBG
-         ,CV_SELFEVAL,CV_UID,CV_CVNAME from (
+         ,CV_SELFEVAL,CV_UID,CV_CVNAME,CV_CARDNO,CV_SKILL,CV_ZP from (
         SELECT rownum rn,cv.* from T_CV cv where CV_UID=#{0})a
         where rn between #{1} and #{2}
     </select>
@@ -42,6 +43,9 @@
         <result property="hobg" column="CV_HOBG"></result>
         <result property="selfeval" column="CV_SELFEVAL"></result>
         <result property="cvname" column="CV_CVNAME"></result>
+        <result property="cardno" column="CV_CARDNO"></result>
+        <result property="zp" column="CV_ZP"></result>
+        <result property="skill" column="CV_SKILL"></result>
         <association property="user" javaType="com.iotek.model.User">
             <id property="id" column="U_ID"></id>
             <result property="name" column="U_NAME"></result>

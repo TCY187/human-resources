@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.InterviewMapper">
+    <insert id="saveInterview">
+        INSERT INTO T_INTERVIEW(I_ID, I_UID, I_RID, I_STATE, I_ADDRESS, I_REMARKS) VALUES (
+        SEQ_T_INTERVIEW.nextval,#{user.id},#{recr.id},#{state},#{address},#{remarks}
+        )
+    </insert>
+    <select id="getInterviewByState" resultMap="intMap">
+        SELECT * FROM T_INTERVIEW WHERE I_STATE=#{state}
+    </select>
+    <select id="getInterviewByStateAndPage" resultMap="intMap">
+        SELECT I_ID,I_UID,I_RID,I_STATE,I_ADDRESS,I_REMARKS FROM (
+        SELECT rownum rn ,i.* from T_INTERVIEW i WHERE I_STATE=#{0})a
+        where rn between #{1} and #{2}
+    </select>
+    <select id="getInterviewByStateAndUid" resultMap="intMap">
+        SELECT * FROM T_INTERVIEW WHERE I_STATE=#{0} and I_UID=#{1}
+    </select>
+    <select id="getInterviewByStateAndUidAndPage" resultMap="intMap">
+        SELECT I_ID,I_UID,I_RID,I_STATE,I_ADDRESS,I_REMARKS FROM (
+        SELECT rownum rn ,i.* from T_INTERVIEW i WHERE I_STATE=#{0} and I_UID=#{1})a
+        where rn between #{2} and #{3}
+    </select>
+    <resultMap id="intMap" type="com.iotek.model.Interview">
+        <id property="id" column="I_ID"></id>
+        <result property="state" column="I_STATE"></result>
+        <result property="address" column="I_ADDRESS"></result>
+        <result property="remarks" column="I_REMARKS"></result>
+        <association property="user" javaType="com.iotek.model.User">
+            <id property="id" column="U_ID"></id>
+            <result property="name" column="U_NAME"></result>
+            <result property="pass" column="U_PASS"></result>
+        </association>
+        <association property="recr" javaType="com.iotek.model.Recr">
+            <id property="id" column="R_ID"></id>
+            <result property="desc" column="R_DESC"></result>
+            <result property="num" column="R_NUM"></result>
+            <result property="state" column="R_STATE"></result>
+            <result property="time" column="R_TIME"></result>
+            <association property="position" javaType="com.iotek.model.Position">
+                <id property="id" column="P_ID"></id>
+                <result property="pname" column="P_PNAME"></result>
+                <result property="jsal" column="P_JSAL"></result>
+                <result property="pf" column="P_PF"></result>
+            </association>
+            <association property="depa" javaType="com.iotek.model.Depa">
+                <id property="id" column="D_ID"></id>
+                <result property="dname" column="D_DNAME"></result>
+                <result property="time" column="D_TIME"></result>
+            </association>
+        </association>
+    </resultMap>
+</mapper>

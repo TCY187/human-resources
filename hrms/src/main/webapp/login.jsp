@@ -21,7 +21,7 @@
             width: 800px;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 100px;
+            margin-top: -300px;
         }
         td{
             width: 200px;
@@ -49,18 +49,28 @@
     <form action="register1">
         <input type="submit" name="register1" value="注册">
     </form>
-    <span>${logerror}<%=user.getName()%></span>
-    <span>${clogerror}</span>
-</div>
-<div id="d1">
-    <h2>员工登录</h2>
-    <form action="emplogin" method="post">
-        账号：<input type="text" name="name"/><br/>
-        密码：<input type="password" name="pass"/><br/>
-        <input type="submit" value="登录">
-    </form>
     <span>${logerror}</span>
     <span>${clogerror}</span>
+</div>
+<div id="d2">
+    <h2>员工登录</h2>
+    <form action="emplogin" method="post">
+        账号：<input type="text" name="ename"/><br/>
+        密码：<input type="password" name="epass"/><br/>
+        <input type="submit" value="登录">
+    </form>
+    <span>${emplogerror}</span>
+    <span>${empclogerror}</span>
+</div>
+<div id="d3">
+    <h2>管理员登录</h2>
+    <form action="manlogin" method="post">
+        账号：<input type="text" name="mname"/><br/>
+        密码：<input type="password" name="mpass"/><br/>
+        <input type="submit" value="登录">
+    </form>
+    <span>${manlogerror}</span>
+    <span>${manclogerror}</span>
 </div>
 <%
     List<Recr> recrList = (List<Recr>) session.getAttribute("recrList");
@@ -85,9 +95,9 @@
         %>
         <tr>
             <td><%=recrList.get(i).getId()%></td>
-            <td><%=recrList.get(i).getPosition()%></td>
-            <td><%=recrList.get(i).getDepart()%></td>
-            <td><%=recrList.get(i).getSal()%></td>
+            <td><%=recrList.get(i).getPosition().getPname()%></td>
+            <td><%=recrList.get(i).getDepa().getDname()%></td>
+            <td><%=recrList.get(i).getPosition().getJsal()%></td>
             <td><%=recrList.get(i).getDesc()%></td>
             <td><%=recrList.get(i).getNum()%></td>
             <td><%=recrList.get(i).getState()%></td>

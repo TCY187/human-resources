@@ -48,6 +48,14 @@
                 <th><input type="text" name="major" value="<%=cv.getMajor()%>"></th>
             </tr>
             <tr>
+                <th>身份证</th>
+                <th><input type="text" name="cardno" value="<%=cv.getCardno()%>"></th>
+                <th>邮编</th>
+                <th><input type="text" name="zp" value="<%=cv.getZp()%>"></th>
+                <th>技能</th>
+                <th><input type="text" name="skill" value="<%=cv.getSkill()%>"></th>
+            </tr>
+            <tr>
                 <th>工作经验</th>
                 <th colspan="5"><input type="text" name="hobg" value="<%=cv.getHobg()%>"></th>
             </tr>
@@ -57,7 +65,7 @@
             </tr>
         </table>
         <input type="hidden" name="CVId" value="<%=cv.getId()%>">
-        <input type="submit" value="确认添加">
+        <input type="submit" value="确认修改">
     </form>
     <a href="success1">返回首页</a>
 </div>

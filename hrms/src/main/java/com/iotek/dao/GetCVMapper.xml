@@ -4,4 +4,45 @@
     <insert id="saveGetCV">
         INSERT into T_GCV(G_ID, G_CVID,G_RID, G_STATE) VALUES(SEQ_T_GCV.nextval,#{0},#{1},0)
     </insert>
+    <update id="updateGetCVByState">
+        UPDATE T_GCV SET G_STATE=#{state} where G_ID=#{id}
+    </update>
+    <select id="getGetCVByState" resultMap="getCVMap">
+        SELECT * from T_GCV where G_STATE=#{state}
+    </select>
+    <select id="getGetCVByStateAndPage" resultMap="getCVMap">
+        SELECT G_ID,G_CVID,G_STATE,G_RID FROM (
+        SELECT rownum rn ,g.* from T_GCV g WHERE G_STATE=#{0})a
+        where rn between #{1} and #{2}
+    </select>
+    <select id="getGetCVById" resultMap="getCVMap">
+        SELECT * FROM T_GCV WHERE G_ID=#{id}
+    </select>
+
+    <resultMap id="getCVMap" type="com.iotek.model.GetCV">
+        <id property="id" column="G_ID"></id>
+        <result property="state" column="G_STATE"></result>
+        <association property="cv" javaType="com.iotek.model.CV">
+            <id property="id" column="CV_ID"></id>
+            <result property="uname" column="CV_UNAME"></result>
+        </association>
+        <association property="recr" javaType="com.iotek.model.Recr">
+            <id property="id" column="R_ID"></id>
+            <result property="desc" column="R_DESC"></result>
+            <result property="num" column="R_NUM"></result>
+            <result property="state" column="R_STATE"></result>
+            <result property="time" column="R_TIME"></result>
+            <association property="position" javaType="com.iotek.model.Position">
+                <id property="id" column="P_ID"></id>
+                <result property="pname" column="P_PNAME"></result>
+                <result property="jsal" column="P_JSAL"></result>
+                <result property="pf" column="P_PF"></result>
+            </association>
+            <association property="depa" javaType="com.iotek.model.Depa">
+                <id property="id" column="D_ID"></id>
+                <result property="dname" column="D_DNAME"></result>
+                <result property="time" column="D_TIME"></result>
+            </association>
+        </association>
+    </resultMap>
 </mapper>
