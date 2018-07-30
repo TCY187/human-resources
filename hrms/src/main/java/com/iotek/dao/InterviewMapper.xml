@@ -10,23 +10,30 @@
         UPDATE T_INTERVIEW SET I_STATE=#{state} where I_ID=#{id}
     </update>
     <select id="getInterviewByState" resultMap="intMap">
-        SELECT * FROM T_INTERVIEW WHERE I_STATE=#{state}
+        SELECT * FROM T_INTERVIEW,T_USER,T_RECR,T_POSITION,T_DEPA WHERE I_STATE=#{state}
+        AND I_UID=U_ID AND I_RID=R_ID AND R_PID = P_ID AND R_DID=D_ID
     </select>
     <select id="getInterviewByStateAndPage" resultMap="intMap">
-        SELECT I_ID,I_UID,I_RID,I_STATE,I_ADDRESS,I_REMARKS FROM (
-        SELECT rownum rn ,i.* from T_INTERVIEW i WHERE I_STATE=#{0})a
+        SELECT I_ID,I_UID,I_RID,I_STATE,I_ADDRESS,I_REMARKS,U_NAME,P_PNAME,D_DNAME,P_JSAL,P_PF FROM (
+        SELECT rownum rn ,i.* ,u.*,r.*,p.*,d.*from T_INTERVIEW i,T_USER u,
+        T_RECR r,T_POSITION p,T_DEPA d WHERE I_STATE=#{0}
+        AND I_UID=U_ID AND I_RID=R_ID AND R_PID = P_ID AND R_DID=D_ID)a
         where rn between #{1} and #{2}
     </select>
     <select id="getInterviewByStateAndUid" resultMap="intMap">
-        SELECT * FROM T_INTERVIEW WHERE I_STATE=#{0} and I_UID=#{1}
+        SELECT * FROM T_INTERVIEW,T_USER,T_RECR,T_POSITION,T_DEPA WHERE I_STATE=#{0} and I_UID=#{1}
+        AND I_UID=U_ID AND I_RID=R_ID AND R_PID = P_ID AND R_DID=D_ID
     </select>
     <select id="getInterviewByStateAndUidAndPage" resultMap="intMap">
-        SELECT I_ID,I_UID,I_RID,I_STATE,I_ADDRESS,I_REMARKS FROM (
-        SELECT rownum rn ,i.* from T_INTERVIEW i WHERE I_STATE=#{0} and I_UID=#{1})a
+        SELECT I_ID,I_UID,I_RID,I_STATE,I_ADDRESS,I_REMARKS,U_NAME,P_PNAME,D_DNAME,P_JSAL,P_PF FROM (
+        SELECT rownum rn ,i.* ,u.*,r.*,p.*,d.*from T_INTERVIEW i,T_USER u,
+        T_RECR r,T_POSITION p,T_DEPA d WHERE I_STATE=#{0} and I_UID=#{1}
+        AND I_UID=U_ID AND I_RID=R_ID AND R_PID = P_ID AND R_DID=D_ID)a
         where rn between #{2} and #{3}
     </select>
     <select id="getIntById" resultMap="intMap">
-        SELECT * FROM T_INTERVIEW WHERE I_ID=#{IId}
+        SELECT * FROM T_INTERVIEW,T_USER,T_RECR,T_POSITION,T_DEPA WHERE I_ID=#{IId}
+        AND I_UID=U_ID AND I_RID=R_ID AND R_PID = P_ID AND R_DID=D_ID
     </select>
     <resultMap id="intMap" type="com.iotek.model.Interview">
         <id property="id" column="I_ID"></id>

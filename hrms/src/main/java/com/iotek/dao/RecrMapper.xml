@@ -5,23 +5,27 @@
         DELETE FROM T_RECR WHERE R_ID=#{rid}
     </delete>
     <select id="getRecrByState" resultMap="recrMap">
-        SELECT * FROM T_RECR WHERE R_STATE=#{state}
+        SELECT * FROM T_RECR r,T_POSITION p,T_DEPA d WHERE R_STATE=#{state}
+        and R_PID=P_ID AND R_DID=D_ID
     </select>
     <select id="getRecrByStateAndPage" resultMap="recrMap">
-        SELECT R_ID,R_PID,R_DID,R_DESC,R_NUM,R_STATE,R_TIME FROM (
-        SELECT rownum rn ,r.* from T_RECR r WHERE R_STATE=#{0})a
+        SELECT R_ID,R_PID,R_DID,R_DESC,R_NUM,R_STATE,R_TIME,P_PNAME,D_DNAME,P_JSAL FROM (
+        SELECT rownum rn ,r.* ,p.*,d.*from T_RECR r,T_POSITION p,T_DEPA d WHERE R_STATE=#{0}
+        and R_PID=P_ID AND R_DID=D_ID)a
         where rn between #{1} and #{2}
     </select>
     <select id="getRecrByRid" resultMap="recrMap">
-        SELECT * FROM T_RECR WHERE R_ID=#{rid}
+        SELECT * FROM T_RECR r,T_POSITION p,T_DEPA d WHERE R_ID=#{rid}
+        and R_PID=P_ID AND R_DID=D_ID
     </select>
     <select id="getRecrByPage" resultMap="recrMap">
-        SELECT R_ID,R_PID,R_DID,R_DESC,R_NUM,R_STATE,R_TIME FROM (
-        SELECT rownum rn ,r.* from T_RECR r)a
+        SELECT R_ID,R_PID,R_DID,R_DESC,R_NUM,R_STATE,R_TIME,P_PNAME,D_DNAME,P_JSAL FROM (
+        SELECT rownum rn ,r.* ,p.*,d.*from T_RECR r,T_POSITION p,T_DEPA d
+        WHERE R_PID=P_ID AND R_DID=D_ID)a
         where rn between #{0} and #{1}
     </select>
     <select id="getRecr" resultMap="recrMap">
-        SELECT * FROM T_RECR
+        SELECT * FROM T_RECR r,T_POSITION p,T_DEPA d WHERE R_PID=P_ID AND R_DID=D_ID
     </select>
 
     <resultMap id="recrMap" type="com.iotek.model.Recr">

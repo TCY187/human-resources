@@ -17,16 +17,16 @@
         DELETE FROM T_CV where CV_ID=#{CVid}
     </delete>
     <select id="getCVByUid" resultMap="cvMap">
-        SELECT * from T_CV where CV_UID=#{uid}
+        SELECT * from T_CV cv,T_USER u where CV_UID=#{uid} AND CV_UID=U_ID
     </select>
     <select id="getCVByUidAndPage" resultMap="cvMap">
         SELECT CV_ID,CV_UNAME,CV_SEX,CV_BIRTH,CV_BP,CV_EDU,CV_MAJOR,CV_EMAIL,CV_PHONE,CV_SCHOOL,CV_HOBG
-         ,CV_SELFEVAL,CV_UID,CV_CVNAME,CV_CARDNO,CV_SKILL,CV_ZP from (
-        SELECT rownum rn,cv.* from T_CV cv where CV_UID=#{0})a
+         ,CV_SELFEVAL,CV_UID,CV_CVNAME,CV_CARDNO,CV_SKILL,CV_ZP,U_ID,U_NAME,U_PASS from (
+        SELECT rownum rn,cv.* ,u.*from T_CV cv,T_USER u where CV_UID=#{0} AND CV_UID=U_ID)a
         where rn between #{1} and #{2}
     </select>
     <select id="getCVByCVid" resultMap="cvMap">
-        SELECT * from T_CV where CV_ID=#{CVid}
+        SELECT * from T_CV cv,T_USER u where CV_ID=#{CVid} AND CV_UID=U_ID
     </select>
 
     <resultMap id="cvMap" type="com.iotek.model.CV">

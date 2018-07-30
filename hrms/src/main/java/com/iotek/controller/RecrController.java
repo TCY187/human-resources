@@ -27,9 +27,10 @@ public class RecrController {
         int begin = (currentPage-1)*pageSize+1;
         int end = (currentPage-1)*pageSize+pageSize;
         List<Recr> recrList1 = recrService.getRecrByStateAndPage(state,begin,end);
-        session.setAttribute("manrecrList",recrList1);
-        session.setAttribute("mantotalPages",totalPages);
-        return "listmanRecr";
+        System.out.println(recrList1);
+        session.setAttribute("recrList",recrList1);
+        session.setAttribute("totalPages",totalPages);
+        return "../../login";
     }
     @RequestMapping("/getRecr")
     public String getRecr(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session){
