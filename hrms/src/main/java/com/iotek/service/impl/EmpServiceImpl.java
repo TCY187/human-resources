@@ -1,5 +1,6 @@
 package com.iotek.service.impl;
 
+import com.iotek.dao.EmpMapper;
 import com.iotek.service.EmpService;
 import org.springframework.stereotype.Service;
 
@@ -11,5 +12,5 @@ import javax.annotation.Resource;
 @Service
 public class EmpServiceImpl implements EmpService{
     @Resource
-    private EmpService empService;
+    private EmpMapper empMapper;
 }
