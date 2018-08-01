@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.dao.DepaMapper">
+    <insert id="saveDepa">
+        INSERT INTO T_DEPA(D_ID, D_DNAME, D_TIME) VALUES (SEQ_T_DEPA.nextval,#{dname},#{time})
+    </insert>
+    <update id="updateDepa">
+        UPDATE T_DEPA SET D_DNAME=#{dname} where D_ID=#{id}
+    </update>
 
+    <delete id="deleteDepa">
+        DELETE FROM T_DEPA WHERE D_ID=#{id}
+    </delete>
 </mapper>

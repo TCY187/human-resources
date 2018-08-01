@@ -2,4 +2,66 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.dao.EmpMapper">
 
+    <insert id="saveEmp">
+        INSERT into T_EMP(E_ID, E_UNAME, E_SEX, E_BIRTH, E_BP, E_EDU, E_MAJOR, E_EMAIL,
+        E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE) VALUES
+        (SEQ_T_EMP.nextval,#{uname},#{sex},#{birth},#{bp},#{edu},#{major},#{email},#{phone},#{school},
+        #{cardno},#{ename},#{pass},#{depa.id},#{position.id},#{state})
+    </insert>
+    <update id="updateEmp">
+        UPDATE T_EMP SET E_UNAME=#{uname}, E_SEX=#{sex}, E_BIRTH=#{birth}, E_BP=#{bp},
+        E_EDU=#{edu}, E_MAJOR=#{major}, E_EMAIL=#{email},
+        E_PHONE=#{phone}, E_SCHOOL=#{school}, E_CARDNO=#{cardno},E_PASS=#{pass} where E_ID=#{id}
+    </update>
+    <delete id="deleteEmp">
+        DELETE FROM T_EMP where E_ID=#{id}
+    </delete>
+    <select id="getEmpByDepa" resultMap="empMap">
+        SELECT * FROM T_EMP,T_DEPA,T_POSITION WHERE E_DID=#{did}
+    </select>
+    <select id="getEmpByDepaAndPage" resultMap="empMap">
+        SELECT E_ID, E_UNAME, E_SEX, E_BIRTH, E_BP, E_EDU, E_MAJOR, E_EMAIL,
+        E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE,P_PNAME,D_DNAME from (
+        SELECT rownum rn,e.*,d.*,p.*from T_EMP e,T_DEPA d,T_POSITION p where E_DID=#{0}
+        and E_DID=D_ID AND E_PID=P_ID)a
+        where rn between #{1} and #{2}
+    </select>
+    <select id="getEmpByPosition" resultMap="empMap">
+        SELECT * FROM T_EMP,T_DEPA,T_POSITION WHERE E_PID=#{pid}
+    </select>
+    <select id="getEmpByPositionAndPage" resultMap="empMap">
+        SELECT E_ID, E_UNAME, E_SEX, E_BIRTH, E_BP, E_EDU, E_MAJOR, E_EMAIL,
+        E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE,P_PNAME,D_DNAME from (
+        SELECT rownum rn,e.*,d.*,p.*from T_EMP e,T_DEPA d,T_POSITION p where E_PID=#{0}
+        and E_DID=D_ID AND E_PID=P_ID)a
+        where rn between #{1} and #{2}
+    </select>
+
+    <resultMap id="empMap" type="com.iotek.model.Emp">
+        <id property="id" column="E_ID"></id>
+        <result property="uname" column="E_UNAME"></result>
+        <result property="sex" column="E_SEX"></result>
+        <result property="birth" column="E_BIRTH"></result>
+        <result property="bp" column="E_BP"></result>
+        <result property="edu" column="E_EDU"></result>
+        <result property="major" column="E_MAJOR"></result>
+        <result property="email" column="E_EMAIL"></result>
+        <result property="phone" column="E_PHONE"></result>
+        <result property="school" column="E_SCHOOL"></result>
+        <result property="ename" column="E_ENAME"></result>
+        <result property="pass" column="E_PASS"></result>
+        <result property="state" column="E_STATE"></result>
+        <result property="cardno" column="E_CARDNO"></result>
+        <association property="position" javaType="com.iotek.model.Position">
+            <id property="id" column="P_ID"></id>
+            <result property="pname" column="P_PNAME"></result>
+            <result property="jsal" column="P_JSAL"></result>
+            <result property="pf" column="P_PF"></result>
+        </association>
+        <association property="depa" javaType="com.iotek.model.Depa">
+            <id property="id" column="D_ID"></id>
+            <result property="dname" column="D_DNAME"></result>
+            <result property="time" column="D_TIME"></result>
+        </association>
+    </resultMap>
 </mapper>
