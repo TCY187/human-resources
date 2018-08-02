@@ -1,6 +1,7 @@
 package com.iotek.model;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by TCY on 2018/7/27.
@@ -9,6 +10,7 @@ public class Depa {
     private Integer id;
     private String dname;
     private Date time;
+    private List<Position> positionList;
 
     public Depa() {
     }
@@ -41,6 +43,14 @@ public class Depa {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public List<Position> getPositionList() {
+        return positionList;
+    }
+
+    public void setPositionList(List<Position> positionList) {
+        this.positionList = positionList;
     }
 
     @Override

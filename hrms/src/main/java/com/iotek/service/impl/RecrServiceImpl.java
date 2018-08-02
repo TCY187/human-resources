@@ -38,4 +38,16 @@ public class RecrServiceImpl implements RecrService{
     public boolean deleteRecrByRid(int rid) {
         return recrMapper.deleteRecrByRid(rid);
     }
+
+    public List<Integer> getRidByDid(int did) {
+        return recrMapper.getRidByDid(did);
+    }
+
+    public boolean deleteRecrByDid(int did) {
+        return recrMapper.deleteRecrByDid(did);
+    }
+
+    public boolean deleteRecrByPid(int pid) {
+        return recrMapper.deleteRecrByPid(pid);
+    }
 }

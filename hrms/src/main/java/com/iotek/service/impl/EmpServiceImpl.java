@@ -35,4 +35,16 @@ public class EmpServiceImpl implements EmpService{
     public boolean updateEmp(Emp emp) {
         return empMapper.updateEmp(emp);
     }
+
+    public List<Emp> getEmpByPosition(int pid) {
+        return empMapper.getEmpByPosition(pid);
+    }
+
+    public List<Emp> getEmpByPositionAndPage(int pid, int begin, int end) {
+        return empMapper.getEmpByPositionAndPage(pid, begin, end);
+    }
+
+    public boolean updateQuitEmp(int id) {
+        return empMapper.updateQuitEmp(id);
+    }
 }

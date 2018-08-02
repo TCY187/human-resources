@@ -18,16 +18,45 @@ public class EmpController {
     @Resource
     private EmpService empService;
     @RequestMapping("/getEmpByDepa")
-    public String getEmpByDepa(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, int did, HttpSession session){
-        List<Emp> empList = empService.getEmpByDepa(did);
+    public String getEmpByDepa(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, int did3, HttpSession session){
+        List<Emp> empList = empService.getEmpByDepa(did3);
         int totalNum=empList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
         int begin = (currentPage-1)*pageSize+1;
         int end = (currentPage-1)*pageSize+pageSize;
-        List<Emp> empList1 = empService.getEmpByDepaAndPage(did,begin,end);
-        session.setAttribute("empList",empList1);
-        session.setAttribute("emptotalPages",totalPages);
-        return "listEmp";
+        List<Emp> empList1 = empService.getEmpByDepaAndPage(did3,begin,end);
+        session.setAttribute("empdepaList",empList1);
+        session.setAttribute("empdepatotalPages",totalPages);
+        return "listDepaEmp";
+    }
+    @RequestMapping("/getEmpByPosition")
+    public String getEmpByPosition(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, int pid2, HttpSession session){
+        List<Emp> empList = empService.getEmpByPosition(pid2);
+        int totalNum=empList.size();
+        int pageSize=5;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int begin = (currentPage-1)*pageSize+1;
+        int end = (currentPage-1)*pageSize+pageSize;
+        List<Emp> empList1= empService.getEmpByPositionAndPage(pid2,begin,end);
+        session.setAttribute("emppList",empList1);
+        session.setAttribute("empptotalPages",totalPages);
+        session.setAttribute("pid2",pid2+"");
+        return "listPEmp";
+    }
+    @RequestMapping("/quit")
+    public String quit(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session,int eid){
+        boolean flag = empService.updateQuitEmp(eid);
+        int pid2 =Integer.parseInt((String) session.getAttribute("pid2"));
+        List<Emp> empList = empService.getEmpByPosition(pid2);
+        int totalNum=empList.size();
+        int pageSize=5;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int begin = (currentPage-1)*pageSize+1;
+        int end = (currentPage-1)*pageSize+pageSize;
+        List<Emp> empList1= empService.getEmpByPositionAndPage(pid2,begin,end);
+        session.setAttribute("emppList",empList1);
+        session.setAttribute("empptotalPages",totalPages);
+        return "listPEmp";
     }
 }

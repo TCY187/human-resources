@@ -13,6 +13,9 @@
         E_EDU=#{edu}, E_MAJOR=#{major}, E_EMAIL=#{email},
         E_PHONE=#{phone}, E_SCHOOL=#{school}, E_CARDNO=#{cardno},E_PASS=#{pass} where E_ID=#{id}
     </update>
+    <update id="updateQuitEmp">
+        UPDATE  T_EMP SET E_PID=0,E_DID=0,E_STATE=0 WHERE E_ID=#{id}
+    </update>
     <delete id="deleteEmp">
         DELETE FROM T_EMP where E_ID=#{id}
     </delete>

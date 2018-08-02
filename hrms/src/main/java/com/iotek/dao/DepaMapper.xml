@@ -11,4 +11,27 @@
     <delete id="deleteDepa">
         DELETE FROM T_DEPA WHERE D_ID=#{id}
     </delete>
+    <select id="getAllDepa" resultMap="depaMapper">
+        SELECT * FROM T_DEPA
+    </select>
+    <select id="getDepaByDid" resultMap="depaMapper">
+        SELECT * FROM T_DEPA,T_POSITION where P_DID=D_ID AND D_ID=#{did}
+    </select>
+    <select id="getAllDepaByPage" resultMap="depaMapper">
+        SELECT D_ID,D_DNAME FROM (
+        SELECT rownum rn ,p.*,d.*from T_POSITION p,T_DEPA d
+        )a
+        where rn between #{0} and #{1}
+    </select>
+    <resultMap id="depaMapper" type="com.iotek.model.Depa">
+        <id property="id" column="D_ID"></id>
+        <result property="dname" column="D_DNAME"></result>
+        <result property="time" column="D_TIME"></result>
+        <collection property="positionList" ofType="com.iotek.model.Position">
+            <id property="id" column="P_ID"></id>
+            <result property="pname" column="P_PNAME"></result>
+            <result property="jsal" column="P_JSAL"></result>
+            <result property="pf" column="P_PF"></result>
+        </collection>
+    </resultMap>
 </mapper>

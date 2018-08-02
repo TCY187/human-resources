@@ -4,6 +4,12 @@
     <delete id="deleteRecrByRid">
         DELETE FROM T_RECR WHERE R_ID=#{rid}
     </delete>
+    <delete id="deleteRecrByDid">
+        DELETE FROM T_RECR WHERE R_DID=#{did}
+    </delete>
+    <delete id="deleteRecrByPid">
+        DELETE FROM T_RECR WHERE R_PID=#{pid}
+    </delete>
     <select id="getRecrByState" resultMap="recrMap">
         SELECT * FROM T_RECR r,T_POSITION p,T_DEPA d WHERE R_STATE=#{state}
         and R_PID=P_ID AND R_DID=D_ID
@@ -26,6 +32,9 @@
     </select>
     <select id="getRecr" resultMap="recrMap">
         SELECT * FROM T_RECR r,T_POSITION p,T_DEPA d WHERE R_PID=P_ID AND R_DID=D_ID
+    </select>
+    <select id="getRidByDid" resultMap="recrMap">
+        SELECT R_ID FROM T_RECR WHERE R_DID=#{did}
     </select>
 
     <resultMap id="recrMap" type="com.iotek.model.Recr">

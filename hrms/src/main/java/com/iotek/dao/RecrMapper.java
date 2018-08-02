@@ -14,4 +14,7 @@ public interface RecrMapper {
     List<Recr> getRecrByPage(int begin,int end);
     List<Recr> getRecr();
     boolean deleteRecrByRid(int rid);
+    boolean deleteRecrByDid(int did);
+    boolean deleteRecrByPid(int pid);
+    List<Integer> getRidByDid(int did);
 }

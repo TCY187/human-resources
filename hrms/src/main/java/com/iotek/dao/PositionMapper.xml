@@ -2,6 +2,34 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.dao.PositionMapper">
     <insert id="savePosition">
-        INSERT INTO
+        INSERT INTO T_POSITION(P_ID, P_PNAME, P_DID, P_JSAL, P_PF) VALUES (SEQ_T_POSITION.nextval,#{pname},#{depa.id},#{jsal},#{pf})
     </insert>
+    <update id="updatePosition">
+        UPDATE T_POSITION SET P_PNAME=#{pname} where P_ID=#{id}
+    </update>
+    <delete id="deletePosition">
+        DELETE FROM T_POSITION WHERE P_ID=#{pid}
+    </delete>
+    <delete id="deletePositionByDid">
+        DELETE FROM T_POSITION WHERE P_DID=#{did}
+    </delete>
+    <select id="getPositionByDid" resultMap="pMap">
+        SELECT * FROM T_POSITION WHERE P_DID=#{did}
+    </select>
+    <select id="getPositionByDidAndPage" resultMap="pMap">
+        SELECT P_PNAME,P_ID,P_JSAL,P_PF,D_DNAME,P_ID FROM (
+        SELECT rownum rn,p.* ,d.*from T_POSITION p,T_DEPA d  WHERE P_DID=#{0} and P_DID=D_ID)a
+        where rn between #{1} and #{2}
+    </select>
+    <resultMap id="pMap" type="com.iotek.model.Position">
+        <id property="id" column="P_ID"></id>
+        <result property="pname" column="P_PNAME"></result>
+        <result property="jsal" column="P_JSAL"></result>
+        <result property="pf" column="P_PF"></result>
+        <association property="depa" javaType="com.iotek.model.Depa">
+            <id property="id" column="D_ID"></id>
+            <result property="dname" column="D_DNAME"></result>
+            <result property="time" column="D_TIME"></result>
+        </association>
+    </resultMap>
 </mapper>

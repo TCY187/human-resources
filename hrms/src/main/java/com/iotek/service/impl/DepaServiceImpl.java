@@ -6,6 +6,7 @@ import com.iotek.service.DepaService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by TCY on 2018/7/27.
@@ -26,4 +27,17 @@ public class DepaServiceImpl implements DepaService{
     public boolean saveDepa(Depa depa) {
         return depaMapper.saveDepa(depa);
     }
+
+    public List<Depa> getAllDepa() {
+        return depaMapper.getAllDepa();
+    }
+
+    public Depa getDepaByDid(int did) {
+        return depaMapper.getDepaByDid(did);
+    }
+
+    public List<Depa> getAllDepaByPage(int begin, int end) {
+        return depaMapper.getAllDepaByPage(begin, end);
+    }
+
 }

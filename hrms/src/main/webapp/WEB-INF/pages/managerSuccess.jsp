@@ -25,5 +25,8 @@
 <form action="getRecr" method="post">
     <input type="submit" value="查看招聘信息">
 </form>
+<form action="getAllDepa" method="post">
+    <input type="submit" value="查看员工">
+</form>
 </body>
 </html>

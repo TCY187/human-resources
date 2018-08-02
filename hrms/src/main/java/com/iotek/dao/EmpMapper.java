@@ -15,4 +15,5 @@ public interface EmpMapper {
     boolean updateEmp(Emp emp);
     List<Emp> getEmpByPosition(int pid);
     List<Emp> getEmpByPositionAndPage(int pid,int begin,int end);
+    boolean updateQuitEmp(int id);
 }
