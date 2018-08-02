@@ -2,6 +2,7 @@ package com.iotek.service;
 
 import com.iotek.model.Emp;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,4 +17,5 @@ public interface EmpService {
     List<Emp> getEmpByPosition(int pid);
     List<Emp> getEmpByPositionAndPage(int pid,int begin,int end);
     boolean updateQuitEmp(int id);
+    List<Emp> getAllEmp();
 }

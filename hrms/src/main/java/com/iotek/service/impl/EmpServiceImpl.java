@@ -6,6 +6,7 @@ import com.iotek.service.EmpService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,5 +47,9 @@ public class EmpServiceImpl implements EmpService{
 
     public boolean updateQuitEmp(int id) {
         return empMapper.updateQuitEmp(id);
+    }
+
+    public List<Emp> getAllEmp() {
+        return empMapper.getAllEmp();
     }
 }

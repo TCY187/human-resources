@@ -28,5 +28,8 @@
 <form action="getAllDepa" method="post">
     <input type="submit" value="查看员工">
 </form>
+<form action="aboutCul" method="post">
+    <input type="submit" value="相关培训">
+</form>
 </body>
 </html>

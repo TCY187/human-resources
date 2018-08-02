@@ -12,4 +12,8 @@ public class SuccessController {
     public String success(){
         return "../../login";
     }
+    @RequestMapping("/msuccess")
+    public String msuccess(){
+        return "managerSuccess";
+    }
 }

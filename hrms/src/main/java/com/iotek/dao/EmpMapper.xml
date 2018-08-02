@@ -39,6 +39,9 @@
         and E_DID=D_ID AND E_PID=P_ID)a
         where rn between #{1} and #{2}
     </select>
+    <select id="getAllEmp" resultMap="empMap">
+        SELECT * FROM T_EMP
+    </select>
 
     <resultMap id="empMap" type="com.iotek.model.Emp">
         <id property="id" column="E_ID"></id>
@@ -55,6 +58,7 @@
         <result property="pass" column="E_PASS"></result>
         <result property="state" column="E_STATE"></result>
         <result property="cardno" column="E_CARDNO"></result>
+        <result property="entrytime" column="E_ENTRYTIME"></result>
         <association property="position" javaType="com.iotek.model.Position">
             <id property="id" column="P_ID"></id>
             <result property="pname" column="P_PNAME"></result>

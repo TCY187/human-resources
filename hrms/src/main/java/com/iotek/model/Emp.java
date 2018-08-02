@@ -22,6 +22,7 @@ public class Emp {
     private Depa depa;
     private Position position;
     private Integer state;
+    private Date entrytime;
 
     public Emp() {
     }
@@ -154,6 +155,14 @@ public class Emp {
         this.state = state;
     }
 
+    public Date getEntrytime() {
+        return entrytime;
+    }
+
+    public void setEntrytime(Date entrytime) {
+        this.entrytime = entrytime;
+    }
+
     @Override
     public String toString() {
         return "Emp{" +
@@ -173,6 +182,7 @@ public class Emp {
                 ", depa=" + depa +
                 ", position=" + position +
                 ", state=" + state +
+                ", entrytime=" + entrytime +
                 '}';
     }
 }

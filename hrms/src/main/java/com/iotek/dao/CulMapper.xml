@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.CulMapper">
+    <insert id="saveCul">
+        <selectKey resultType="Integer" order="BEFORE" keyProperty="id">
+            SELECT SEQ_T_CUL.nextval FROM DUAL
+        </selectKey>
+        INSERT into T_CUL(C_ID,C_THEME,C_CONTENT,C_BEGINTIME,C_ENDTIME,C_ADDRESS,C_STATE,C_ISSUETIME) VALUES
+        (#{id},#{theme},#{content},#{begintime,jdbcType=DATE},#{endtime,jdbcType=DATE},#{address},#{state},#{issuetime,jdbcType=DATE})
+    </insert>
+    <update id="updateCulStateByCid">
+        UPDATE T_CUL SET C_STATE=#{0},C_ISSUETIME=#{1,jdbcType=DATE} where C_ID=#{2}
+    </update>
+    <update id="updateCulByCid">
+        UPDATE T_CUL SET C_THEME=#{theme},C_CONTENT=#{content},C_ADDRESS=#{address} WHERE C_ID=#{id}
+    </update>
+    <delete id="deleteCulByCid">
+        DELETE FROM T_CUL WHERE C_ID=#{cid}
+    </delete>
+    <select id="getCulByState" resultMap="culMap">
+        SELECT * from T_CUL where C_STATE=#{state}
+    </select>
+    <select id="getCulByStateAndPage" resultMap="culMap">
+        SELECT C_ID,C_THEME,C_CONTENT,C_BEGINTIME,C_ENDTIME,C_ADDRESS,C_STATE,C_ISSUETIME,E_UNAME FROM(
+        SELECT rownum rn,c.* ,e.*,ec.* from T_CUL c,T_EC ec,T_EMP e where C_STATE=#{0}
+         and C_ID=EC_CID AND EC_EID=E_ID)a
+        where rn between #{1} and #{2}
+    </select>
+    <select id="getCulByCid" resultMap="culMap">
+        SELECT * from T_CUL where C_ID=#{cid}
+    </select>
+
+    <resultMap id="culMap" type="com.iotek.model.Cul">
+        <id property="id" column="C_ID"></id>
+        <result property="theme" column="C_THEME"></result>
+        <result property="content" column="C_CONTENT"></result>
+        <result property="begintime" column="C_BEGINTIME"></result>
+        <result property="endtime" column="C_ENDTIME"></result>
+        <result property="address" column="C_ADDRESS"></result>
+        <result property="state" column="C_STATE"></result>
+        <result property="issuetime" column="C_ISSUETIME"></result>
+        <collection property="empList" ofType="com.iotek.model.Emp">
+            <id property="id" column="E_ID"></id>
+            <result property="uname" column="E_UNAME"></result>
+        </collection>
+    </resultMap>
+</mapper>

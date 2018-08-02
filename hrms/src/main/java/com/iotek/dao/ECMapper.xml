@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.ECMapper">
+    <insert id="saveEC">
+        INSERT INTO T_EC(EC_ID, EC_EID, EC_CID, EC_STATE) VALUES (SEQ_T_EC.nextval,#{0},#{1},0)
+    </insert>
+    <delete id="deleteECByCid">
+        DELETE FROM T_EC WHERE EC_CID=#{cid}
+    </delete>
+</mapper>
