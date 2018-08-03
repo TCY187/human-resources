@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.AttendanceMapper">
+    <insert id="saveAttendance">
+        INSERT into T_ATTENDANCE(A_ID, A_EID, A_TIME, A_ONTIME, A_OFFTIME, A_STATE) VALUES (
+        SEQ_T_ATTENDANCE.nextval,#{emp.id},sysdate,sysdate,#{offtime,jdbcType=DATE},#{state}
+        )
+    </insert>
+    <update id="updateAttendance">
+        UPDATE T_ATTENDANCE SET A_OFFTIME=sysdate,A_STATE=1 where A_ID=#{aid}
+    </update>
+    <update id="updateAttendanceNull">
+        UPDATE  T_ATTENDANCE SET A_STATE=2 where A_ID=#{aid}
+    </update>
+    <select id="getAttendanceByEid" resultMap="attMap">
+        SELECT * FROM T_ATTENDANCE WHERE A_EID=#{eid} and trunc(sysdate)=trunc(A_ONTIME)
+    </select>
+    <select id="getAttendanceByEid1" resultMap="attMap">
+        SELECT * FROM T_ATTENDANCE WHERE A_EID=#{eid}
+    </select>
+    <select id="getAttendanceByEid1AndPage" resultMap="attMap">
+        SELECT A_ID,A_TIME,A_ONTIME,A_OFFTIME,A_STATE FROM (
+        SELECT rownum rn ,a.* from T_ATTENDANCE a WHERE A_EID=#{0} )aa
+        where rn between #{1} and #{2}
+    </select>
+    <resultMap id="attMap" type="com.iotek.model.Attendance">
+        <id property="id" column="A_ID"></id>
+        <result property="time" column="A_TIME"></result>
+        <result property="ontime" column="A_ONTIME"></result>
+        <result property="offtime" column="A_OFFTIME"></result>
+        <result property="state" column="A_STATE"></result>
+        <association property="emp" javaType="com.iotek.model.Emp">
+            <id property="id" column="E_ID"></id>
+            <result property="uname" column="E_UNAME"></result>
+            <result property="state" column="E_STATE"></result>
+        </association>
+    </resultMap>
+</mapper>

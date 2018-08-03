@@ -52,4 +52,8 @@ public class EmpServiceImpl implements EmpService{
     public List<Emp> getAllEmp() {
         return empMapper.getAllEmp();
     }
+
+    public Emp getEmpByPass(Emp emp) {
+        return empMapper.getEmpByPass(emp);
+    }
 }

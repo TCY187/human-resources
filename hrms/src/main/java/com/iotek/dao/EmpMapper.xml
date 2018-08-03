@@ -42,6 +42,9 @@
     <select id="getAllEmp" resultMap="empMap">
         SELECT * FROM T_EMP
     </select>
+    <select id="getEmpByPass" resultMap="empMap">
+        SELECT * FROM T_EMP where E_ENAME=#{ename} and E_PASS=#{pass}
+    </select>
 
     <resultMap id="empMap" type="com.iotek.model.Emp">
         <id property="id" column="E_ID"></id>

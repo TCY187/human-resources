@@ -3,6 +3,7 @@ package com.iotek.controller;
 import com.iotek.model.Emp;
 import com.iotek.service.EmpService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -58,5 +59,16 @@ public class EmpController {
         session.setAttribute("emppList",empList1);
         session.setAttribute("empptotalPages",totalPages);
         return "listPEmp";
+    }
+    @RequestMapping("/emplogin")
+    public String emplogin(Emp emp, HttpSession session, Model model){
+        System.out.println(emp);
+        Emp emp1 = empService.getEmpByPass(emp);
+        if(emp1!=null){
+            session.setAttribute("emp",emp1);
+            return "empSuccess";
+        }
+        model.addAttribute("emplogerror","µÇÂ¼Ãû»òÃÜÂë´íÎó");
+        return "../../login";
     }
 }

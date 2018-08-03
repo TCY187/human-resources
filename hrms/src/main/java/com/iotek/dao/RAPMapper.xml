@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.iotek.dao.RAPMapper">
+    <insert id="saveRAP">
+        INSERT into T_RAP (RA_ID, RA_TIME, RA_MONEY, RA_EID, RA_INTR0,RA_STATE) VALUES (
+        SEQ_T_RAP.nextval,sysdate,#{money},#{emp.id},#{intro},#{state}
+        )
+    </insert>
+    <select id="getRAPByEid" resultMap="rapMap">
+        SELECT * FROM T_RAP WHERE RA_EID=#{eid}
+    </select>
+    <select id="getRAPByEidAndPage" resultMap="rapMap">
+        SELECT RA_ID,RA_TIME,RA_MONEY,RA_INTR0,RA_STATE FROM (
+        SELECT rownum rn ,ra.* from T_RAP ra WHERE RA_EID=#{0} )a
+        where rn between #{1} and #{2}
+    </select>
+    <resultMap id="rapMap" type="com.iotek.model.RAP">
+        <id property="id" column="RA_ID"></id>
+        <result property="time" column="RA_TIME"></result>
+        <result property="money" column="RA_MONEY"></result>
+        <result property="intro" column="RA_INTRO"></result>
+        <result property="state" column="RA_STATE"></result>
+        <association property="emp" javaType="com.iotek.model.Emp">
+            <id property="id" column="E_ID"></id>
+            <result property="uname" column="E_UNAME"></result>
+            <result property="state" column="E_STATE"></result>
+        </association>
+    </resultMap>
+</mapper>

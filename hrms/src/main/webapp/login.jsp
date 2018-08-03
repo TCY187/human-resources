@@ -56,7 +56,7 @@
     <h2>员工登录</h2>
     <form action="emplogin" method="post">
         账号：<input type="text" name="ename"/><br/>
-        密码：<input type="password" name="epass"/><br/>
+        密码：<input type="password" name="pass"/><br/>
         <input type="submit" value="登录">
     </form>
     <span>${emplogerror}</span>

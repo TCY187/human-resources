@@ -18,4 +18,5 @@ public interface EmpMapper {
     List<Emp> getEmpByPositionAndPage(int pid,int begin,int end);
     boolean updateQuitEmp(int id);
     List<Emp> getAllEmp();
+    Emp getEmpByPass(Emp emp);
 }
