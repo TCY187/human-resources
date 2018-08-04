@@ -16,11 +16,30 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        #div1{
+            width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+        }
+        td{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        h1{
+            background-color: red;
+            margin: 0 auto;
+            text-align: center
+        }
+    </style>
 </head>
 <body>
 <%
     List<RAP> rapList = (List<RAP>) session.getAttribute("rapList");
     int totalPages= (int) session.getAttribute("raptotalPages");
+    System.out.println(rapList.get(0));
 %>
 <div id="div1">
     <h1>奖惩记录一览</h1>

@@ -11,7 +11,7 @@ public class RAP {
     private Double money;
     private Emp emp;
     private String intro;
-    private Integer state;//0 迟到早退，1 加班，2 结算错误，3 其他
+    private Integer state;//0 迟到，1 早退，2 加班，3 结算错误，4 其他
 
     public RAP() {
     }

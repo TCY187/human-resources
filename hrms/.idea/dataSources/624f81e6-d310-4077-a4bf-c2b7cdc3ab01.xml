@@ -4,9 +4,9 @@
     <root id="1"/>
     <schema id="2" parent="1" name="WORK">
       <ObjectId>49</ObjectId>
-      <IntrospectionTimestamp>2018-08-03.15:29:59</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2018-08-04.23:25:00</IntrospectionTimestamp>
       <CreatedTimestamp>2018-07-25.13:47:35</CreatedTimestamp>
-      <ModifiedTimestamp>2018-08-03.15:29:14</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-08-04.23:24:42</ModifiedTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -225,7 +225,7 @@
     <table id="45" parent="2" name="T_RAP">
       <ObjectId>20949</ObjectId>
       <CreatedTimestamp>2018-08-03.09:42:58</CreatedTimestamp>
-      <ModifiedTimestamp>2018-08-03.15:29:14</ModifiedTimestamp>
+      <ModifiedTimestamp>2018-08-04.23:24:42</ModifiedTimestamp>
       <TemporaryPreserve>1</TemporaryPreserve>
     </table>
     <table id="46" parent="2" name="T_RECR">
@@ -735,7 +735,7 @@
       <Position>4</Position>
       <DataType>NUMBER(4)|0</DataType>
     </column>
-    <column id="146" parent="45" name="RA_INTR0">
+    <column id="146" parent="45" name="RA_INTRO">
       <Position>5</Position>
       <DataType>VARCHAR2(2550)|0</DataType>
     </column>

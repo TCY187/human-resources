@@ -11,4 +11,6 @@ public interface RAPService {
     boolean saveRAP(RAP rap);
     List<RAP> getRAPByEid(int eid);
     List<RAP> getRAPByEidAndPage(int eid,int begin,int end);
+    RAP getRAPByEidAndSateAndSysdate(int eid,int state);//查找当天某状态的记录
+    boolean deleteRAPByRAid(int raid);
 }

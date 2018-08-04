@@ -27,4 +27,12 @@ public class RAPServiceImpl implements RAPService {
     public List<RAP> getRAPByEidAndPage(int eid, int begin, int end) {
         return rapMapper.getRAPByEidAndPage(eid, begin, end);
     }
+
+    public RAP getRAPByEidAndSateAndSysdate(int eid, int state) {
+        return rapMapper.getRAPByEidAndSateAndSysdate(eid, state);
+    }
+
+    public boolean deleteRAPByRAid(int raid) {
+        return rapMapper.deleteRAPByRAid(raid);
+    }
 }
