@@ -11,7 +11,7 @@ public class Attendance {
     private Date time;//日期
     private Date ontime;//上班时间
     private Date offtime;//下班时间
-    private Integer state;//0 上班打卡下班未打，1 上下班正常打开，2 超过三小时导致旷工
+    private Integer state;//0 上班打卡下班未打，1 上下班正常打卡，2 超过三小时导致旷工
 
     public Attendance() {
     }

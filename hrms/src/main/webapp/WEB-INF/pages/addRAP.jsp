@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: TCY
-  Date: 2018/8/3
-  Time: 11:31
+  Date: 2018/8/5
+  Time: 23:17
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,13 +16,13 @@
     <title></title>
 </head>
 <body>
-<a href="clockon">上班打卡</a>
-<a href="clockoff">下班打卡</a>
-<a href="getAttendanceByEid">考勤查询</a>
-<a href="getRAPByEid">奖惩查询</a>
-<a href="getSalByEid">工资查询</a>
-<a href="getCulByEid">培训查询</a>
-<br/><span>${clockerror}</span>
-<br/><span>${salerror}</span>
+<div id="div1">
+    <form action="saveRAP1" method="post">
+        金额：<input type="number" step="50" name="money" id="number" value="0"><br/>
+        原因：<input id="man" type="radio" checked="checked" name="intro" value="结算错误"/>结算错误
+        <input id="woman" type="radio"  name="intro" value="其他"/>其他
+        <input type="submit" value="添加">
+    </form>
+</div>
 </body>
 </html>

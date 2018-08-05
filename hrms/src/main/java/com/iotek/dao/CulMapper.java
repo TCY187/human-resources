@@ -16,4 +16,5 @@ public interface CulMapper {
     Cul getCulByCid(int cid);
     boolean deleteCulByCid(int cid);
     boolean updateCulByCid(Cul cul);
+    List<Cul> getCulByEidAndState(int eid,int state);
 }

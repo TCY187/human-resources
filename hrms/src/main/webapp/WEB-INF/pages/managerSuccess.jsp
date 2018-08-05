@@ -25,11 +25,15 @@
 <form action="getRecr" method="post">
     <input type="submit" value="查看招聘信息">
 </form>
-<form action="getAllDepa" method="post">
+<form action="operateDepa" method="post">
     <input type="submit" value="查看员工">
 </form>
 <form action="aboutCul" method="post">
     <input type="submit" value="相关培训">
 </form>
+<form action="payMoney" method="post">
+    <input type="submit" value="薪资结算">
+</form>
+<br/><span>${payMoneyerror}</span>
 </body>
 </html>

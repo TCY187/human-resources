@@ -15,24 +15,6 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
-    <style>
-        #div1{
-            width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: -300px;
-        }
-        td{
-            width: 200px;
-            height: 30px;
-            text-align: center;
-        }
-        h1{
-            background-color: red;
-            margin: 0 auto;
-            text-align: center
-        }
-    </style>
 </head>
 <body>
 <%
@@ -48,6 +30,7 @@
             <th>身份证号</th>
             <th>部门</th>
             <th>职位</th>
+            <th>奖惩信息</th>
             <th>离职</th>
         </tr>
         <%
@@ -59,6 +42,12 @@
             <td><%=empList.get(i).getCardno()%></td>
             <td><%=empList.get(i).getDepa().getDname()%></td>
             <td><%=empList.get(i).getPosition().getPname()%></td>
+            <td>
+                <form action="MgetRAPByEmp" method="post">
+                    <input type="hidden" name="eid1" value="<%=empList.get(i).getId()%>">
+                    <input type="submit" value="奖惩信息">
+                </form>
+            </td>
             <td>
                 <form action="quit" method="post">
                     <input type="hidden" name="eid" value="<%=empList.get(i).getId()%>">

@@ -40,7 +40,7 @@
         where rn between #{1} and #{2}
     </select>
     <select id="getAllEmp" resultMap="empMap">
-        SELECT * FROM T_EMP
+        SELECT * FROM T_EMP,T_POSITION,T_DEPA where E_DID=D_ID AND E_PID=P_ID
     </select>
     <select id="getEmpByPass" resultMap="empMap">
         SELECT * FROM T_EMP where E_ENAME=#{ename} and E_PASS=#{pass}

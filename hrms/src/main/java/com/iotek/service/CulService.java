@@ -18,4 +18,5 @@ public interface CulService {
     boolean deleteCulByCid(int cid);
     boolean deleteECByCid(int cid);
     boolean updateCulByCid(Cul cul);
+    List<Cul> getCulByEidAndState(int eid,int state);
 }

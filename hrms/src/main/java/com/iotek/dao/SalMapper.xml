@@ -1,4 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.dao.SalMapper">
+    <insert id="saveSal">
+        INSERT into T_SAL(S_ID, S_MONTHTIME, S_EID, S_JSAL, S_PFSAL, S_OVERSAL, S_RAPSAL, S_SSSAL, S_SAL, S_STATE, S_INTRO)
+        VALUES (SEQ_T_SAL.nextval,sysdate,#{emp.id},#{jsal},#{pfsal},#{oversal},#{rapsal},#{sssal},#{sal},#{state},#{intro})
+    </insert>
+    <select id="getSalByMonth" resultMap="salMap">
+        SELECT * FROM T_SAL,T_EMP WHERE trunc(sysdate)=trunc(S_MONTHTIME) AND S_EID=E_ID
+    </select>
+    <select id="getSalByEidAndMonth" resultMap="salMap">
+        SELECT * FROM T_SAL,T_EMP WHERE trunc(sysdate)=trunc(S_MONTHTIME) AND S_EID=E_ID and S_EID=#{eid}
+    </select>
+    <select id="getSalByMonthAndPage" resultMap="salMap">
+        SELECT S_ID, S_MONTHTIME, S_EID, S_JSAL, S_PFSAL, S_OVERSAL, S_RAPSAL, S_SSSAL, S_SAL, S_STATE, S_INTRO,E_UNAME FROM (
+        SELECT rownum rn,s.*,e.* FROM T_SAL s,T_EMP e WHERE trunc(sysdate)=trunc(S_MONTHTIME) AND S_EID=E_ID
+        ) a where rn between #{0} and #{1}
+    </select>
+    <resultMap id="salMap" type="com.iotek.model.Sal">
+        <id property="id" column="S_ID"></id>
+        <result property="monthtime" column="S_MONTHTIME"></result>
+        <result property="jsal" column="S_JSAL"></result>
+        <result property="pfsal" column="S_PFSAL"></result>
+        <result property="oversal" column="S_OVERSAL"></result>
+        <result property="rapsal" column="S_RAPSAL"></result>
+        <result property="sssal" column="S_SSSAL"></result>
+        <result property="sal" column="S_SAL"></result>
+        <result property="state" column="S_STATE"></result>
+        <result property="intro" column="S_INTRO"></result>
+        <association property="emp" javaType="com.iotek.model.Emp">
+            <id property="id" column="E_ID"></id>
+            <result property="uname" column="E_UNAME"></result>
+            <result property="state" column="E_STATE"></result>
+        </association>
+    </resultMap>
 </mapper>

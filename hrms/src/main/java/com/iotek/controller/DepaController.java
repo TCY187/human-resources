@@ -51,7 +51,8 @@ public class DepaController {
         List<Depa> depaList1 = depaService.getAllDepaByPage(begin,end);
         session.setAttribute("depaList1",depaList1);
         session.setAttribute("depatotalPages",totalPages);
-        return "operateDepa";
+        System.out.println(totalPages);
+        return "operateD";
     }
     @RequestMapping("/getDepa1")
     public void getDepaAndP(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{
@@ -92,10 +93,10 @@ public class DepaController {
             List<Depa> depaList1 = depaService.getAllDepaByPage(begin,end);
             session.setAttribute("depatotalPages",totalPages);
             session.setAttribute("depaList1",depaList1);
-            return "operateDepa";
+            return "operateD";
         }
         model.addAttribute("operateDepaerror","²»¿ÉÉ¾³ý");
-        return "operateDepa";
+        return "operateD";
     }
 
 }

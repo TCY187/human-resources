@@ -29,6 +29,9 @@
     <select id="getCulByCid" resultMap="culMap">
         SELECT * from T_CUL where C_ID=#{cid}
     </select>
+    <select id="getCulByEidAndState" resultMap="culMap">
+        SELECT * from T_CUL ,T_EC ,T_EMP  where EC_EID=#{0} and C_STATE=#{1} and C_ID=EC_CID AND EC_EID=E_ID
+    </select>
 
     <resultMap id="culMap" type="com.iotek.model.Cul">
         <id property="id" column="C_ID"></id>

@@ -14,4 +14,5 @@ public interface AttendanceService {
     boolean updateAttendanceNull(int aid);
     List<Attendance> getAttendanceByEid1(int eid);
     List<Attendance> getAttendanceByEid1AndPage(int eid,int begin,int end);
+    List<Attendance> getAttendanceByEidLastMonth(int eid,int state);//找出上月的
 }

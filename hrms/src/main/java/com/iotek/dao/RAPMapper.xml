@@ -6,19 +6,33 @@
         SEQ_T_RAP.nextval,sysdate,#{money},#{emp.id},#{intro},#{state}
         )
     </insert>
+    <update id="updateRAPMoneyByRAid">
+        UPDATE T_RAP SET RA_MONEY=#{0} WHERE RA_ID=#{1}
+    </update>
     <delete id="deleteRAPByRAid">
         DELETE FROM T_RAP WHERE RA_ID=#{raid}
     </delete>
     <select id="getRAPByEid" resultMap="rapMap">
-        SELECT * FROM T_RAP WHERE RA_EID=#{eid}
+        SELECT * FROM T_RAP WHERE RA_EID=#{eid} and to_char(RA_TIME,'yyyy-mm')=to_char(sysdate,'yyyy-mm')
     </select>
     <select id="getRAPByEidAndPage" resultMap="rapMap">
         SELECT RA_ID,RA_TIME,RA_MONEY,RA_INTRO,RA_STATE FROM (
-        SELECT rownum rn ,ra.* from T_RAP ra WHERE RA_EID=#{0} )a
+        SELECT rownum rn ,ra.* from T_RAP ra WHERE RA_EID=#{0} and to_char(RA_TIME,'yyyy-mm')=to_char(sysdate,'yyyy-mm'))a
         where rn between #{1} and #{2}
     </select>
     <select id="getRAPByEidAndSateAndSysdate" resultMap="rapMap">
         SELECT * FROM T_RAP WHERE RA_EID=#{0} and RA_STATE=#{1} AND trunc(sysdate)=trunc(RA_TIME)
+    </select>
+    <select id="getRAPByRAid" resultMap="rapMap">
+        SELECT * FROM T_RAP WHERE RA_ID=#{raid}
+    </select>
+    <select id="getRAPByEidLastMonth" resultMap="rapMap">
+        SELECT * FROM T_RAP WHERE RA_EID=#{0} and RA_STATE!=#{1}
+        and to_char(RA_TIME,'yyyy-mm')=to_char(add_months(sysdate,-1),'yyyy-mm')
+    </select>
+    <select id="getRAPByEidAndStateLastMonth" resultMap="rapMap">
+        SELECT * FROM T_RAP WHERE RA_EID=#{0} and RA_STATE=#{1}
+        and to_char(RA_TIME,'yyyy-mm')=to_char(add_months(sysdate,-1),'yyyy-mm')
     </select>
     <resultMap id="rapMap" type="com.iotek.model.RAP">
         <id property="id" column="RA_ID"></id>

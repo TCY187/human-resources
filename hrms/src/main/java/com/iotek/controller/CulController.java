@@ -196,4 +196,13 @@ public class CulController {
         session.setAttribute("noIssueCultotalPages",totalPages);
         return "listnoIssueCul";
     }
+    @RequestMapping("/getCulByEid")
+    public String getCulByEid(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session){
+        Emp emp  = (Emp) session.getAttribute("emp");
+        int state=1;
+        List<Cul> culList = culService.getCulByEidAndState(emp.getId(),state);
+        session.setAttribute("empCulList",culList);
+//        session.setAttribute("empCultotalPages",totalPages);
+        return "listEmpCul";
+    }
 }

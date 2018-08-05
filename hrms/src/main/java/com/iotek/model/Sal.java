@@ -8,7 +8,7 @@ import java.util.Date;
 public class Sal {
     private Integer id;
     private Date monthtime;
-    private Integer eid;
+    private Emp emp;
     private Double jsal;//基本薪资
     private Double pfsal;//绩效薪资
     private Double oversal;//加班薪资
@@ -21,18 +21,7 @@ public class Sal {
     public Sal() {
     }
 
-    public Sal(Date monthtime, Integer eid, Double jsal, Double pfsal, Double oversal, Double rapsal, Double sssal, Double sal, Integer state, String intro) {
-        this.monthtime = monthtime;
-        this.eid = eid;
-        this.jsal = jsal;
-        this.pfsal = pfsal;
-        this.oversal = oversal;
-        this.rapsal = rapsal;
-        this.sssal = sssal;
-        this.sal = sal;
-        this.state = state;
-        this.intro = intro;
-    }
+
 
     public Integer getId() {
         return id;
@@ -50,12 +39,12 @@ public class Sal {
         this.monthtime = monthtime;
     }
 
-    public Integer getEid() {
-        return eid;
+    public Emp getEmp() {
+        return emp;
     }
 
-    public void setEid(Integer eid) {
-        this.eid = eid;
+    public void setEmp(Emp emp) {
+        this.emp = emp;
     }
 
     public Double getJsal() {
@@ -127,7 +116,7 @@ public class Sal {
         return "Sal{" +
                 "id=" + id +
                 ", monthtime=" + monthtime +
-                ", eid=" + eid +
+                ", emp=" + emp +
                 ", jsal=" + jsal +
                 ", pfsal=" + pfsal +
                 ", oversal=" + oversal +

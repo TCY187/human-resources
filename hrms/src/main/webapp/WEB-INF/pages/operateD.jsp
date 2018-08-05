@@ -15,24 +15,6 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
-    <style>
-        #div1{
-            width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: -300px;
-        }
-        td{
-            width: 200px;
-            height: 30px;
-            text-align: center;
-        }
-        h1{
-            background-color: red;
-            margin: 0 auto;
-            text-align: center
-        }
-    </style>
 </head>
 <body>
 <%

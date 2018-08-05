@@ -12,6 +12,7 @@ public interface AttendanceMapper {
     boolean updateAttendance(int aid);//下班打卡
     Attendance getAttendanceByEid(int eid);//找出当天的
     boolean updateAttendanceNull(int aid);//超过三小时变为旷工
-    List<Attendance> getAttendanceByEid1(int eid);//找出全部
+    List<Attendance> getAttendanceByEid1(int eid);//找出当月的
     List<Attendance> getAttendanceByEid1AndPage(int eid,int begin,int end);//找出全部并分页
+    List<Attendance> getAttendanceByEidLastMonth(int eid,int state);//找出上月的
 }

@@ -35,4 +35,20 @@ public class RAPServiceImpl implements RAPService {
     public boolean deleteRAPByRAid(int raid) {
         return rapMapper.deleteRAPByRAid(raid);
     }
+
+    public RAP getRAPByRAid(int raid) {
+        return rapMapper.getRAPByRAid(raid);
+    }
+
+    public boolean updateRAPMoneyByRAid(int money, int raid) {
+        return rapMapper.updateRAPMoneyByRAid(money, raid);
+    }
+
+    public List<RAP> getRAPByEidLastMonth(int eid,int state) {
+        return rapMapper.getRAPByEidLastMonth(eid,state);
+    }
+
+    public List<RAP> getRAPByEidAndStateLastMonth(int eid, int state) {
+        return rapMapper.getRAPByEidAndStateLastMonth(eid, state);
+    }
 }
