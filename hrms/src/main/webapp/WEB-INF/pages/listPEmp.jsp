@@ -32,7 +32,10 @@
             <th>职位</th>
             <th>奖惩信息</th>
             <th>离职</th>
-        </tr>
+            <th>换岗</th>
+            <th>基本信息</th>
+            <th>考勤信息</th>
+            </tr>
         <%
             for (int i = 0; i < empList.size(); i++) {
         %>
@@ -49,9 +52,27 @@
                 </form>
             </td>
             <td>
-                <form action="quit" method="post">
+                <form action="quit1" method="post">
                     <input type="hidden" name="eid" value="<%=empList.get(i).getId()%>">
                     <input type="submit" value="离职">
+                </form>
+            </td>
+            <td>
+                <form action="relieveguard" method="post">
+                    <input type="hidden" name="eid2" value="<%=empList.get(i).getId()%>">
+                    <input type="submit" value="换岗">
+                </form>
+            </td>
+            <td>
+                <form action="mgetEmpDetail" method="post">
+                    <input type="hidden" name="eid3" value="<%=empList.get(i).getId()%>">
+                    <input type="submit" value="基本信息">
+                </form>
+            </td>
+            <td>
+                <form action="mgetAttenByEmp" method="post">
+                    <input type="hidden" name="eid4" value="<%=empList.get(i).getId()%>">
+                    <input type="submit" value="考勤信息">
                 </form>
             </td>
         </tr>

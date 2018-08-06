@@ -169,4 +169,17 @@ public class AttendanceController {
         session.setAttribute("attendancetotalPages",totalPages);
         return "listAttendance";
     }
+    @RequestMapping("/mgetAttenByEmp")
+    public String mgetAttenByEmp(int eid4,@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session){
+        List<Attendance> attendanceList = attendanceService.getAttenByEid(eid4);
+        int totalNum=attendanceList.size();
+        int pageSize=5;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int begin = (currentPage-1)*pageSize+1;
+        int end = (currentPage-1)*pageSize+pageSize;
+        List<Attendance> attendanceList1 = attendanceService.getAttenByEidAndPage(eid4,begin,end);
+        session.setAttribute("attenList",attendanceList1);
+        session.setAttribute("attentotalPages",totalPages);
+        return "listAtten";
+    }
 }

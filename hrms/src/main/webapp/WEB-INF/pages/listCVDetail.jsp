@@ -1,4 +1,5 @@
-<%@ page import="com.iotek.model.CV" %><%--
+<%@ page import="com.iotek.model.CV" %>
+<%@ page import="java.text.SimpleDateFormat" %><%--
   Created by IntelliJ IDEA.
   User: TCY
   Date: 2018/7/26
@@ -18,6 +19,8 @@
 <body>
 <%
     CV cv = (CV)session.getAttribute("cvDetail");
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+    String birth = sdf.format(cv.getBirth());
 %>
 <div id="div1">
     <form action="updateCV" method="post">
@@ -29,7 +32,7 @@
                 <th>性别</th>
                 <th><input type="text" name="sex" value="<%=cv.getSex()%>"></th>
                 <th>出生日期</th>
-                <th><input type="date" name="birth1" value="<%=cv.getBirth()%>"></th>
+                <th><input type="date" name="birth1" value="<%=birth%>"></th>
             </tr>
             <tr>
                 <th>籍贯</th>

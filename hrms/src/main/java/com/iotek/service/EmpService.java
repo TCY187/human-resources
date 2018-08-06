@@ -16,7 +16,12 @@ public interface EmpService {
     boolean updateEmp(Emp emp);
     List<Emp> getEmpByPosition(int pid);
     List<Emp> getEmpByPositionAndPage(int pid,int begin,int end);
-    boolean updateQuitEmp(int id);
+    boolean updateQuitEmp(int id,String quit);
     List<Emp> getAllEmp();
     Emp getEmpByPass(Emp emp);
+    List<Emp> getEmpByState(int state);
+    List<Emp> getEmpByStateAndPage(int state,int begin,int end);
+    Emp getEmpByEid(int eid);
+    boolean updateEmpState(Emp emp);
+    boolean updateEmpDP(Emp emp);
 }

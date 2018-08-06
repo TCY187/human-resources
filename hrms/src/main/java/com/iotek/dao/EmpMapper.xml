@@ -14,28 +14,34 @@
         E_PHONE=#{phone}, E_SCHOOL=#{school}, E_CARDNO=#{cardno},E_PASS=#{pass} where E_ID=#{id}
     </update>
     <update id="updateQuitEmp">
-        UPDATE  T_EMP SET E_PID=0,E_DID=0,E_STATE=0 WHERE E_ID=#{id}
+        UPDATE  T_EMP SET E_PID=0,E_DID=0,E_STATE=2,E_INTRO=#{1} WHERE E_ID=#{0}
+    </update>
+    <update id="updateEmpState">
+        UPDATE T_EMP SET E_STATE=#{state} where E_ID=#{id}
+    </update>
+    <update id="updateEmpDP">
+        UPDATE T_EMP SET E_PID=#{position.id} ,E_DID=#{depa.id} where E_ID=#{id}
     </update>
     <delete id="deleteEmp">
         DELETE FROM T_EMP where E_ID=#{id}
     </delete>
     <select id="getEmpByDepa" resultMap="empMap">
-        SELECT * FROM T_EMP,T_DEPA,T_POSITION WHERE E_DID=#{did}
+        SELECT * FROM T_EMP,T_DEPA,T_POSITION WHERE E_DID=#{did} and (E_STATE=0 OR E_STATE=1)
     </select>
     <select id="getEmpByDepaAndPage" resultMap="empMap">
         SELECT E_ID, E_UNAME, E_SEX, E_BIRTH, E_BP, E_EDU, E_MAJOR, E_EMAIL,
         E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE,P_PNAME,D_DNAME from (
-        SELECT rownum rn,e.*,d.*,p.*from T_EMP e,T_DEPA d,T_POSITION p where E_DID=#{0}
+        SELECT rownum rn,e.*,d.*,p.*from T_EMP e,T_DEPA d,T_POSITION p where E_DID=#{0} AND (E_STATE=0 OR E_STATE=1)
         and E_DID=D_ID AND E_PID=P_ID)a
         where rn between #{1} and #{2}
     </select>
     <select id="getEmpByPosition" resultMap="empMap">
-        SELECT * FROM T_EMP,T_DEPA,T_POSITION WHERE E_PID=#{pid}
+        SELECT * FROM T_EMP,T_DEPA,T_POSITION WHERE E_PID=#{pid} and (E_STATE=0 OR E_STATE=1)
     </select>
     <select id="getEmpByPositionAndPage" resultMap="empMap">
         SELECT E_ID, E_UNAME, E_SEX, E_BIRTH, E_BP, E_EDU, E_MAJOR, E_EMAIL,
         E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE,P_PNAME,D_DNAME from (
-        SELECT rownum rn,e.*,d.*,p.*from T_EMP e,T_DEPA d,T_POSITION p where E_PID=#{0}
+        SELECT rownum rn,e.*,d.*,p.*from T_EMP e,T_DEPA d,T_POSITION p where E_PID=#{0} and (E_STATE=0 OR E_STATE=1)
         and E_DID=D_ID AND E_PID=P_ID)a
         where rn between #{1} and #{2}
     </select>
@@ -43,7 +49,20 @@
         SELECT * FROM T_EMP,T_POSITION,T_DEPA where E_DID=D_ID AND E_PID=P_ID
     </select>
     <select id="getEmpByPass" resultMap="empMap">
-        SELECT * FROM T_EMP where E_ENAME=#{ename} and E_PASS=#{pass}
+        SELECT * FROM T_EMP,T_DEPA,T_POSITION where E_ENAME=#{ename} and E_PASS=#{pass} AND E_DID=D_ID AND E_PID = P_ID
+    </select>
+    <select id="getEmpByState" resultMap="empMap">
+        SELECT * FROM T_EMP,T_DEPA,T_POSITION where E_STATE=#{state} AND E_DID=D_ID AND E_PID = P_ID
+    </select>
+    <select id="getEmpByStateAndPage" resultMap="empMap">
+        SELECT E_ID, E_UNAME, E_SEX, E_BIRTH, E_BP, E_EDU, E_MAJOR, E_EMAIL,
+        E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE,P_PNAME,D_DNAME,E_ENTRYTIME from (
+        SELECT rownum rn,e.*,d.*,p.*from T_EMP e,T_DEPA d,T_POSITION p where E_STATE=#{0}
+        and E_DID=D_ID AND E_PID=P_ID)a
+        where rn between #{1} and #{2}
+    </select>
+    <select id="getEmpByEid" resultMap="empMap">
+        SELECT * FROM T_EMP,T_DEPA,T_POSITION where E_ID=#{id} AND E_DID=D_ID AND E_PID = P_ID
     </select>
 
     <resultMap id="empMap" type="com.iotek.model.Emp">

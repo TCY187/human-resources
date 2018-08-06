@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,28 +24,40 @@ public class RAPController {
     @Resource
     private RAPService rapService;
     @RequestMapping("/getRAPByEid")
-    public String getRAPByEid(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session){
+    public String getRAPByEid(String date1,String rapdate,@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session) throws ParseException{
+        Date date = null;
+        if(date1==null){
+            if(rapdate==null){
+                date = new Date();
+            }else{
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                date = sdf.parse(rapdate);
+            }
+        }else{
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            date = sdf.parse(date1);
+        }
         Emp emp  = (Emp) session.getAttribute("emp");
-        List<RAP> rapList = rapService.getRAPByEid(emp.getId());
+        List<RAP> rapList = rapService.getRAPByEid(emp.getId(),date);
         int totalNum=rapList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
         int begin = (currentPage-1)*pageSize+1;
         int end = (currentPage-1)*pageSize+pageSize;
-        List<RAP> rapList1 = rapService.getRAPByEidAndPage(emp.getId(),begin,end);
+        List<RAP> rapList1 = rapService.getRAPByEidAndPage(emp.getId(),begin,end,date);
         session.setAttribute("rapList",rapList1);
         session.setAttribute("raptotalPages",totalPages);
         return "listRAP";
     }
     @RequestMapping("/MgetRAPByEmp")
     public String MgetRAPByEmp(int eid1,@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session){
-        List<RAP> rapList = rapService.getRAPByEid(eid1);
+        List<RAP> rapList = rapService.getAllRAPByEid(eid1);
         int totalNum=rapList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
         int begin = (currentPage-1)*pageSize+1;
         int end = (currentPage-1)*pageSize+pageSize;
-        List<RAP> rapList1 = rapService.getRAPByEidAndPage(eid1,begin,end);
+        List<RAP> rapList1 = rapService.getAllRAPByEidAndPage(eid1,begin,end);
         session.setAttribute("Meid",eid1+"");
         session.setAttribute("MrapList",rapList1);
         session.setAttribute("MraptotalPages",totalPages);
@@ -52,13 +67,13 @@ public class RAPController {
     public String deleteRAP(int raid1,@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session){
         rapService.deleteRAPByRAid(raid1);
         int eid1 =Integer.parseInt((String) session.getAttribute("Meid"));
-        List<RAP> rapList = rapService.getRAPByEid(eid1);
+        List<RAP> rapList = rapService.getAllRAPByEid(eid1);
         int totalNum=rapList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
         int begin = (currentPage-1)*pageSize+1;
         int end = (currentPage-1)*pageSize+pageSize;
-        List<RAP> rapList1 = rapService.getRAPByEidAndPage(eid1,begin,end);
+        List<RAP> rapList1 = rapService.getAllRAPByEidAndPage(eid1,begin,end);
         session.setAttribute("MrapList",rapList1);
         session.setAttribute("MraptotalPages",totalPages);
         return "MlistRAP";
@@ -74,13 +89,13 @@ public class RAPController {
         RAP rap = (RAP)session.getAttribute("Mrap");
         rapService.updateRAPMoneyByRAid(updateMoney,rap.getId());
         int eid1 =Integer.parseInt((String) session.getAttribute("Meid"));
-        List<RAP> rapList = rapService.getRAPByEid(eid1);
+        List<RAP> rapList = rapService.getAllRAPByEid(eid1);
         int totalNum=rapList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
         int begin = (currentPage-1)*pageSize+1;
         int end = (currentPage-1)*pageSize+pageSize;
-        List<RAP> rapList1 = rapService.getRAPByEidAndPage(eid1,begin,end);
+        List<RAP> rapList1 = rapService.getAllRAPByEidAndPage(eid1,begin,end);
         session.setAttribute("MrapList",rapList1);
         session.setAttribute("MraptotalPages",totalPages);
         return "MlistRAP";
@@ -107,13 +122,13 @@ public class RAPController {
         rap.setEmp(emp);
         rap.setState(state);
         rapService.saveRAP(rap);
-        List<RAP> rapList = rapService.getRAPByEid(eid1);
+        List<RAP> rapList = rapService.getAllRAPByEid(eid1);
         int totalNum=rapList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
         int begin = (currentPage-1)*pageSize+1;
         int end = (currentPage-1)*pageSize+pageSize;
-        List<RAP> rapList1 = rapService.getRAPByEidAndPage(eid1,begin,end);
+        List<RAP> rapList1 = rapService.getAllRAPByEidAndPage(eid1,begin,end);
         session.setAttribute("MrapList",rapList1);
         session.setAttribute("MraptotalPages",totalPages);
         return "MlistRAP";

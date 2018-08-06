@@ -23,6 +23,7 @@ public class Emp {
     private Position position;
     private Integer state;
     private Date entrytime;
+    private String intro;
 
     public Emp() {
     }
@@ -161,6 +162,14 @@ public class Emp {
 
     public void setEntrytime(Date entrytime) {
         this.entrytime = entrytime;
+    }
+
+    public String getIntro() {
+        return intro;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
     }
 
     @Override

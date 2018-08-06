@@ -15,4 +15,7 @@ public interface AttendanceMapper {
     List<Attendance> getAttendanceByEid1(int eid);//找出当月的
     List<Attendance> getAttendanceByEid1AndPage(int eid,int begin,int end);//找出全部并分页
     List<Attendance> getAttendanceByEidLastMonth(int eid,int state);//找出上月的
+    List<Attendance> getAttenByEid(int eid);//查找某员工的全部
+    List<Attendance> getAttenByEidAndPage(int eid,int begin,int end);
+
 }

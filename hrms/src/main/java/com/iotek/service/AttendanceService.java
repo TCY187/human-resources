@@ -15,4 +15,6 @@ public interface AttendanceService {
     List<Attendance> getAttendanceByEid1(int eid);
     List<Attendance> getAttendanceByEid1AndPage(int eid,int begin,int end);
     List<Attendance> getAttendanceByEidLastMonth(int eid,int state);//找出上月的
+    List<Attendance> getAttenByEid(int eid);//查找某员工的全部
+    List<Attendance> getAttenByEidAndPage(int eid,int begin,int end);
 }

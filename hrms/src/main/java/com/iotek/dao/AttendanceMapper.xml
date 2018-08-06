@@ -27,6 +27,14 @@
         SELECT * FROM T_ATTENDANCE WHERE A_EID=#{0} and  A_STATE=#{1}
         and to_char(A_TIME,'yyyy-mm')=to_char(add_months(sysdate,-1),'yyyy-mm')
     </select>
+    <select id="getAttenByEid" resultMap="attMap">
+        SELECT * FROM T_ATTENDANCE WHERE A_EID=#{eid}
+    </select>
+    <select id="getAttenByEidAndPage" resultMap="attMap">
+        SELECT A_ID,A_TIME,A_ONTIME,A_OFFTIME,A_STATE FROM (
+        SELECT rownum rn ,a.* from T_ATTENDANCE a WHERE A_EID=#{0})aa
+        where rn between #{1} and #{2}
+    </select>
     <resultMap id="attMap" type="com.iotek.model.Attendance">
         <id property="id" column="A_ID"></id>
         <result property="time" column="A_TIME"></result>

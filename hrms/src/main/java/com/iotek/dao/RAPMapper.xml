@@ -13,11 +13,19 @@
         DELETE FROM T_RAP WHERE RA_ID=#{raid}
     </delete>
     <select id="getRAPByEid" resultMap="rapMap">
-        SELECT * FROM T_RAP WHERE RA_EID=#{eid} and to_char(RA_TIME,'yyyy-mm')=to_char(sysdate,'yyyy-mm')
+        SELECT * FROM T_RAP WHERE RA_EID=#{0} and to_char(RA_TIME,'yyyy-mm')=to_char(#{1},'yyyy-mm')
     </select>
     <select id="getRAPByEidAndPage" resultMap="rapMap">
         SELECT RA_ID,RA_TIME,RA_MONEY,RA_INTRO,RA_STATE FROM (
-        SELECT rownum rn ,ra.* from T_RAP ra WHERE RA_EID=#{0} and to_char(RA_TIME,'yyyy-mm')=to_char(sysdate,'yyyy-mm'))a
+        SELECT rownum rn ,ra.* from T_RAP ra WHERE RA_EID=#{0} and to_char(RA_TIME,'yyyy-mm')=to_char(#{3},'yyyy-mm'))a
+        where rn between #{1} and #{2}
+    </select>
+    <select id="getAllRAPByEid" resultMap="rapMap">
+        SELECT * FROM T_RAP WHERE RA_EID=#{eid}
+    </select>
+    <select id="getAllRAPByEidAndPage" resultMap="rapMap">
+        SELECT RA_ID,RA_TIME,RA_MONEY,RA_INTRO,RA_STATE FROM (
+        SELECT rownum rn ,ra.* from T_RAP ra WHERE RA_EID=#{0} )a
         where rn between #{1} and #{2}
     </select>
     <select id="getRAPByEidAndSateAndSysdate" resultMap="rapMap">

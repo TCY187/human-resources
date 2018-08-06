@@ -6,6 +6,7 @@ import com.iotek.service.RAPService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,12 +21,12 @@ public class RAPServiceImpl implements RAPService {
         return rapMapper.saveRAP(rap);
     }
 
-    public List<RAP> getRAPByEid(int eid) {
-        return rapMapper.getRAPByEid(eid);
+    public List<RAP> getRAPByEid(int eid,Date date) {
+        return rapMapper.getRAPByEid(eid,date);
     }
 
-    public List<RAP> getRAPByEidAndPage(int eid, int begin, int end) {
-        return rapMapper.getRAPByEidAndPage(eid, begin, end);
+    public List<RAP> getRAPByEidAndPage(int eid, int begin, int end,Date date) {
+        return rapMapper.getRAPByEidAndPage(eid, begin, end,date);
     }
 
     public RAP getRAPByEidAndSateAndSysdate(int eid, int state) {
@@ -50,5 +51,13 @@ public class RAPServiceImpl implements RAPService {
 
     public List<RAP> getRAPByEidAndStateLastMonth(int eid, int state) {
         return rapMapper.getRAPByEidAndStateLastMonth(eid, state);
+    }
+
+    public List<RAP> getAllRAPByEid(int eid) {
+        return rapMapper.getAllRAPByEid(eid);
+    }
+
+    public List<RAP> getAllRAPByEidAndPage(int eid, int begin, int end) {
+        return rapMapper.getAllRAPByEidAndPage(eid, begin, end);
     }
 }

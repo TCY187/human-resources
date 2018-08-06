@@ -1,7 +1,5 @@
 <%@ page import="com.iotek.model.Attendance" %>
-<%@ page import="java.util.List" %>
-<%@ page import="com.iotek.model.RAP" %>
-<%@ page import="java.text.SimpleDateFormat" %><%--
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: TCY
   Date: 2018/8/3
@@ -38,30 +36,28 @@
 </head>
 <body>
 <%
-    List<RAP> rapList = (List<RAP>) session.getAttribute("rapList");
-    int totalPages= (int) session.getAttribute("raptotalPages");
+    List<Attendance> attendanceList = (List<Attendance>) session.getAttribute("attenList");
+    int totalPages= (int) session.getAttribute("attentotalPages");
 %>
-<form action="getRAPByEid" method="post">
-    <input type="date" name="rapdate" >
-    <input type="submit" value="查询">
-</form>
 <div id="div1">
-    <h1>奖惩记录一览</h1>
+    <h1>考勤记录一览</h1>
     <table border="1" cellspacing="0">
         <tr>
             <th>id</th>
             <th>日期</th>
-            <th>金额</th>
-            <th>缘由</th>
+            <th>上班时间</th>
+            <th>下班时间</th>
+            <th>状态</th>
         </tr>
         <%
-            for (int i = 0; i < rapList.size(); i++) {
+            for (int i = 0; i < attendanceList.size(); i++) {
         %>
         <tr>
-            <td><%=rapList.get(i).getId()%></td>
-            <td><%=rapList.get(i).getTime()%></td>
-            <td><%=rapList.get(i).getMoney()%></td>
-            <td><%=rapList.get(i).getIntro()%></td>
+            <td><%=attendanceList.get(i).getId()%></td>
+            <td><%=attendanceList.get(i).getTime()%></td>
+            <td><%=attendanceList.get(i).getOntime()%></td>
+            <td><%=attendanceList.get(i).getOfftime()%></td>
+            <td><%=attendanceList.get(i).getState()%></td>
         </tr>
         <%
             }
@@ -70,11 +66,7 @@
     <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <%
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String createdate = sdf.format(rapList.get(0).getTime());
-    %>
-    <a href="getRAPByEid?date1=<%=createdate%>&currentPage=<%=i%>"><%=i%></a>
+    <a href="getAttendanceByEid?currentPage=<%=i%>"><%=i%></a>
     <%
         }
     %>

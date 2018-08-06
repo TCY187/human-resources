@@ -1,8 +1,8 @@
-<%@ page import="java.util.Date" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: TCY
-  Date: 2018/8/3
-  Time: 11:31
+  Date: 2018/8/6
+  Time: 20:10
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -16,15 +16,9 @@
     <title></title>
 </head>
 <body>
-<a href="getEmpByEmp">个人信息</a>
-<a href="clockon">上班打卡</a>
-<a href="clockoff">下班打卡</a>
-<a href="getAttendanceByEid">考勤查询</a>
-<a href="getRAPByEid">奖惩查询</a>
-<a href="getSalByEid">工资查询</a>
-<a href="getCulByEid">培训查询</a>
-<a href="empgetDepa">部门查询</a>
-<br/><span>${clockerror}</span>
-<br/><span>${salerror}</span>
+<form action="quit" method="post">
+    离职原因：<input type="text" name="intro"/><br/>
+    <input type="submit" value="确认离职">
+</form>
 </body>
 </html>

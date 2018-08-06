@@ -43,4 +43,12 @@ public class AttendanceServiceImpl implements AttendanceService{
     public List<Attendance> getAttendanceByEidLastMonth(int eid, int state) {
         return attendanceMapper.getAttendanceByEidLastMonth(eid, state);
     }
+
+    public List<Attendance> getAttenByEid(int eid) {
+        return attendanceMapper.getAttenByEid(eid);
+    }
+
+    public List<Attendance> getAttenByEidAndPage(int eid, int begin, int end) {
+        return attendanceMapper.getAttenByEidAndPage(eid, begin, end);
+    }
 }

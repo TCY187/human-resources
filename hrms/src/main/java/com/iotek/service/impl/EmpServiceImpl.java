@@ -45,8 +45,8 @@ public class EmpServiceImpl implements EmpService{
         return empMapper.getEmpByPositionAndPage(pid, begin, end);
     }
 
-    public boolean updateQuitEmp(int id) {
-        return empMapper.updateQuitEmp(id);
+    public boolean updateQuitEmp(int id,String quit) {
+        return empMapper.updateQuitEmp(id,quit);
     }
 
     public List<Emp> getAllEmp() {
@@ -55,5 +55,25 @@ public class EmpServiceImpl implements EmpService{
 
     public Emp getEmpByPass(Emp emp) {
         return empMapper.getEmpByPass(emp);
+    }
+
+    public List<Emp> getEmpByState(int state) {
+        return empMapper.getEmpByState(state);
+    }
+
+    public List<Emp> getEmpByStateAndPage(int state, int begin, int end) {
+        return empMapper.getEmpByStateAndPage(state, begin, end);
+    }
+
+    public Emp getEmpByEid(int eid) {
+        return empMapper.getEmpByEid(eid);
+    }
+
+    public boolean updateEmpState(Emp emp) {
+        return empMapper.updateEmpState(emp);
+    }
+
+    public boolean updateEmpDP(Emp emp) {
+        return empMapper.updateEmpDP(emp);
     }
 }

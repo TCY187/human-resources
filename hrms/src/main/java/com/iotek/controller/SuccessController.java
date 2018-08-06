@@ -16,4 +16,8 @@ public class SuccessController {
     public String msuccess(){
         return "managerSuccess";
     }
+    @RequestMapping("/esuccess")
+    public String esuccess(){
+        return "empSuccess";
+    }
 }

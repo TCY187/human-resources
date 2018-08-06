@@ -33,12 +33,6 @@ public class DepaController {
     private EmpService empService;
     @Resource
     private RecrService recrService;
-    @RequestMapping("/getAllDepa")
-    public String getAllDepa(HttpSession session){
-        List<Depa> depaList = depaService.getAllDepa();
-        session.setAttribute("depaList",depaList);
-        return "listEmp";
-    }
     @RequestMapping("/operateDepa")
     public String operateDepa(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage,HttpSession session){
         List<Depa> depaList = depaService.getAllDepa();
@@ -53,6 +47,21 @@ public class DepaController {
         session.setAttribute("depatotalPages",totalPages);
         System.out.println(totalPages);
         return "operateD";
+    }
+    @RequestMapping("/empgetDepa")
+    public String empgetDepa(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage,HttpSession session){
+        List<Depa> depaList = depaService.getAllDepa();
+        int totalNum=depaList.size();
+        System.out.println(totalNum);
+        int pageSize=5;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int begin = (currentPage-1)*pageSize+1;
+        int end = (currentPage-1)*pageSize+pageSize;
+        List<Depa> depaList1 = depaService.getAllDepaByPage(begin,end);
+        session.setAttribute("empdepaList1",depaList1);
+        session.setAttribute("empdepatotalPages",totalPages);
+        System.out.println(totalPages);
+        return "empListDepa";
     }
     @RequestMapping("/getDepa1")
     public void getDepaAndP(HttpServletRequest request, HttpServletResponse response) throws UnsupportedEncodingException{

@@ -39,6 +39,19 @@ public class PositionController {
         session.setAttribute("did",did1);
         return "operatePosition";
     }
+    @RequestMapping("/empgetPositionByDepa")
+    public String empgetPositionByDepa(int did1, @RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session){
+        List<Position> positionList = positionService.getPositionByDid(did1);
+        int totalNum=positionList.size();
+        int pageSize=5;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int begin = (currentPage-1)*pageSize+1;
+        int end = (currentPage-1)*pageSize+pageSize;
+        List<Position> positionList1 = positionService.getPositionByDidAndPage(did1,begin,end);
+        session.setAttribute("emppositionList",positionList1);
+        session.setAttribute("empptotalPages",totalPages);
+        return "empListPosition";
+    }
     @RequestMapping("/deletePosition")
     public String deletePosition(int pid1, Model model, @RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session){
         List<Emp> empList = empService.getEmpByPosition(pid1);
