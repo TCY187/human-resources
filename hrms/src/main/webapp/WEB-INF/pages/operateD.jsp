@@ -28,6 +28,7 @@
             <th>id</th>
             <th>部门名</th>
             <th>查看相关职位</th>
+            <th>新增相关职位</th>
             <th>删除</th>
             <th>查看相关员工</th>
         </tr>
@@ -41,6 +42,12 @@
                 <form action="getPositionByDepa" method="post">
                     <input type="hidden" name="did1" value="<%=depaList.get(i).getId()%>">
                     <input type="submit" value="查看职位">
+                </form>
+            </td>
+            <td>
+                <form action="addPosition" method="post">
+                    <input type="hidden" name="did4" value="<%=depaList.get(i).getId()%>">
+                    <input type="submit" value="添加职位">
                 </form>
             </td>
             <td>
@@ -67,6 +74,7 @@
     <%
         }
     %>
+    <a href="addDepa">添加新部门</a>
     <span>${operateDepaerror}</span>
 </div>
 </body>

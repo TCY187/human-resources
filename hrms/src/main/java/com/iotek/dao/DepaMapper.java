@@ -14,4 +14,5 @@ public interface DepaMapper {
     List<Depa> getAllDepa();
     List<Depa> getAllDepaByPage(int begin,int end);
     Depa getDepaByDid(int did);
+    Depa getDepaByDid1(int did);//无需职位关联
 }

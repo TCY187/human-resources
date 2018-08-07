@@ -57,6 +57,8 @@ public class GetCVController {
         interview.setAddress(getCV.getRecr().getDepa().getDname());
         interview.setState(0);
         interview.setRemarks("нч");
+        interview.setCv(getCV.getCv());
+        System.out.println(interview);
         boolean flag1 = interviewService.saveInterview(interview);
         boolean flag = getCVService.updateGetCVByState(getCV);
         int state = 0;

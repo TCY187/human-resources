@@ -39,4 +39,8 @@ public class PositionServiceImpl implements PositionService{
     public List<Position> getPositionByDidAndPage(int did, int begin, int end) {
         return positionMapper.getPositionByDidAndPage(did, begin, end);
     }
+
+    public List<Position> getAllPosition() {
+        return positionMapper.getAllPosition();
+    }
 }

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,6 +34,12 @@ public class SalController {
     private SalService salService;
     @RequestMapping("/payMoney")
     public String payMoney(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, Model model, HttpSession session){
+        Calendar c = Calendar.getInstance();
+        int day = c.get(Calendar.DATE);
+        if(day==10){
+            model.addAttribute("payMoneyerror","还未到工资结算日");
+            return "managerSuccess";
+        }
         List<Sal> salList1 = salService.getSalByMonth();
         if(salList1.size()==0){
             List<Emp> empList = empService.getAllEmp();

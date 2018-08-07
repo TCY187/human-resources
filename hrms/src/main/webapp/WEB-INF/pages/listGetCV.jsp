@@ -64,5 +64,6 @@
         <%
         }
     %>
+    <a href="msuccess">返回管理员主页</a>
 </body>
 </html>

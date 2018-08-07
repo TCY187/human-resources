@@ -21,7 +21,7 @@ public class UserController {
         User user1 = userService.getUserByNameAndPass(user);
         if (null!=user1){
             session.setAttribute("user",user1);
-            model.addAttribute("logerror","欢迎你，");
+            model.addAttribute("logerror","欢迎你，已登录");
             return "../../login";
         }else {
             model.addAttribute("logerror","用户名或密码错误");
@@ -38,7 +38,7 @@ public class UserController {
         boolean flag= userService.saveUser(user);
         if (flag){
             session.setAttribute("user",user);
-            return "success";
+            return "../../login";
         }else {
             model.addAttribute("regerror","用户名重复，注册失败");
             return "register";

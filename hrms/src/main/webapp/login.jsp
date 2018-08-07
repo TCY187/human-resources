@@ -41,13 +41,16 @@
 %>
 <div id="d1">
     <h2>游客登录</h2>
-    <form action="login" method="post">
+    <form action="login" method="post" >
         账号：<input type="text" name="name"/><br/>
         密码：<input type="password" name="pass"/><br/>
-        <input type="submit" value="登录">
+        <input type="submit" value="登录" >
     </form>
     <form action="register1">
-        <input type="submit" name="register1" value="注册">
+        <input type="submit"  value="注册">
+    </form>
+    <form action="getuserInt">
+        <input type="submit"  value="查看面试邀请">
     </form>
     <span>${logerror}</span>
     <span>${clogerror}</span>

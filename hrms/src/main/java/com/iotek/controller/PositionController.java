@@ -1,7 +1,9 @@
 package com.iotek.controller;
 
+import com.iotek.model.Depa;
 import com.iotek.model.Emp;
 import com.iotek.model.Position;
+import com.iotek.service.DepaService;
 import com.iotek.service.EmpService;
 import com.iotek.service.PositionService;
 import com.iotek.service.RecrService;
@@ -19,6 +21,8 @@ import java.util.List;
  */
 @Controller
 public class PositionController {
+    @Resource
+    private DepaService depaService;
     @Resource
     private RecrService recrService;
     @Resource
@@ -73,5 +77,28 @@ public class PositionController {
         }
         model.addAttribute("operatePerror","不可删除");
         return "operatePosition";
+    }
+    @RequestMapping("/addPosition")
+    public String addPosition(int did4,HttpSession session){
+        Depa depa = depaService.getDepaByDid1(did4);
+        System.out.println("----"+depa);
+        session.setAttribute("Pdepa",depa);
+        return "addPosition";
+    }
+    @RequestMapping("/addPosition1")
+    public String addPosition1(Model model,Position position,HttpSession session){
+        List<Position>  positionList= positionService.getAllPosition();
+        for(int i=0;i<positionList.size();i++){
+            if(positionList.get(i).getPname().equals(position.getPname())){
+                model.addAttribute("perror","已有该职位名");
+                return "addPosition";
+            }
+        }
+        Depa depa = (Depa) session.getAttribute("Pdepa");
+        System.out.println("+++++++++"+depa);
+        position.setDepa(depa);
+        System.out.println("++++++++++++++"+position);
+        positionService.savePosition(position);
+        return "managerSuccess";
     }
 }

@@ -13,14 +13,14 @@
         R_PID=P_ID AND R_DID=D_ID
     </select>
     <select id="getGetCVByStateAndPage" resultMap="getCVMap">
-        SELECT G_ID,G_CVID,G_STATE,G_RID,P_PNAME,D_DNAME,P_JSAL,P_PF FROM (
+        SELECT G_ID,G_CVID,G_STATE,G_RID,P_PNAME,D_DNAME,P_JSAL,P_PF,CV_UNAME FROM (
         SELECT rownum rn ,g.* ,r.*,cv.*,d.*,p.*from T_GCV g,T_RECR r,T_CV cv,T_DEPA d,T_POSITION p WHERE G_STATE=#{0}
         AND G_CVID=CV_ID AND G_RID=R_ID AND
         R_PID=P_ID AND R_DID=D_ID)a
         where rn between #{1} and #{2}
     </select>
     <select id="getGetCVById" resultMap="getCVMap">
-        SELECT * FROM T_GCV,T_RECR,T_CV,T_DEPA,T_POSITION WHERE G_ID=#{id} AND G_CVID=CV_ID AND G_RID=R_ID AND
+        SELECT * FROM T_GCV,T_RECR,T_CV,T_DEPA,T_POSITION,T_USER WHERE G_ID=#{id} AND G_CVID=CV_ID AND G_RID=R_ID AND
         R_PID=P_ID AND R_DID=D_ID
     </select>
 
@@ -30,6 +30,25 @@
         <association property="cv" javaType="com.iotek.model.CV">
             <id property="id" column="CV_ID"></id>
             <result property="uname" column="CV_UNAME"></result>
+            <result property="sex" column="CV_SEX"></result>
+            <result property="birth" column="CV_BIRTH"></result>
+            <result property="bp" column="CV_BP"></result>
+            <result property="edu" column="CV_EDU"></result>
+            <result property="major" column="CV_MAJOR"></result>
+            <result property="email" column="CV_EMAIL"></result>
+            <result property="phone" column="CV_PHONE"></result>
+            <result property="school" column="CV_SCHOOL"></result>
+            <result property="hobg" column="CV_HOBG"></result>
+            <result property="selfeval" column="CV_SELFEVAL"></result>
+            <result property="cvname" column="CV_CVNAME"></result>
+            <result property="cardno" column="CV_CARDNO"></result>
+            <result property="zp" column="CV_ZP"></result>
+            <result property="skill" column="CV_SKILL"></result>
+            <association property="user" javaType="com.iotek.model.User">
+                <id property="id" column="U_ID"></id>
+                <result property="name" column="U_NAME"></result>
+                <result property="pass" column="U_PASS"></result>
+            </association>
         </association>
         <association property="recr" javaType="com.iotek.model.Recr">
             <id property="id" column="R_ID"></id>

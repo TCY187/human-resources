@@ -192,6 +192,7 @@ public class Emp {
                 ", position=" + position +
                 ", state=" + state +
                 ", entrytime=" + entrytime +
+                ", intro='" + intro + '\'' +
                 '}';
     }
 }

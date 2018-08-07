@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.dao.InterviewMapper">
     <insert id="saveInterview">
-        INSERT INTO T_INTERVIEW(I_ID, I_UID, I_RID, I_STATE, I_ADDRESS, I_REMARKS) VALUES (
-        SEQ_T_INTERVIEW.nextval,#{user.id},#{recr.id},#{state},#{address},#{remarks}
+        INSERT INTO T_INTERVIEW(I_ID, I_UID, I_RID, I_STATE, I_ADDRESS, I_REMARKS,I_CVID) VALUES (
+        SEQ_T_INTERVIEW.nextval,#{user.id},#{recr.id},#{state},#{address},#{remarks},#{cv.id}
         )
     </insert>
     <update id="updateIntState">
         UPDATE T_INTERVIEW SET I_STATE=#{state} where I_ID=#{id}
     </update>
     <select id="getInterviewByState" resultMap="intMap">
-        SELECT * FROM T_INTERVIEW,T_USER,T_RECR,T_POSITION,T_DEPA WHERE I_STATE=#{state}
-        AND I_UID=U_ID AND I_RID=R_ID AND R_PID = P_ID AND R_DID=D_ID
+        SELECT * FROM T_INTERVIEW,T_USER,T_RECR,T_POSITION,T_DEPA,T_CV WHERE I_STATE=#{state}
+        AND I_UID=U_ID AND I_RID=R_ID AND R_PID = P_ID AND R_DID=D_ID and I_CVID=CV_ID
     </select>
     <select id="getInterviewByStateAndPage" resultMap="intMap">
         SELECT I_ID,I_UID,I_RID,I_STATE,I_ADDRESS,I_REMARKS,U_NAME,P_PNAME,D_DNAME,P_JSAL,P_PF FROM (
@@ -32,7 +32,7 @@
         where rn between #{2} and #{3}
     </select>
     <select id="getIntById" resultMap="intMap">
-        SELECT * FROM T_INTERVIEW,T_USER,T_RECR,T_POSITION,T_DEPA WHERE I_ID=#{IId}
+        SELECT * FROM T_INTERVIEW,T_USER,T_RECR,T_POSITION,T_DEPA,T_CV WHERE I_ID=#{IId}
         AND I_UID=U_ID AND I_RID=R_ID AND R_PID = P_ID AND R_DID=D_ID
     </select>
     <resultMap id="intMap" type="com.iotek.model.Interview">
@@ -61,6 +61,29 @@
                 <id property="id" column="D_ID"></id>
                 <result property="dname" column="D_DNAME"></result>
                 <result property="time" column="D_TIME"></result>
+            </association>
+        </association>
+        <association property="cv" javaType="com.iotek.model.CV">
+            <id property="id" column="CV_ID"></id>
+            <result property="uname" column="CV_UNAME"></result>
+            <result property="sex" column="CV_SEX"></result>
+            <result property="birth" column="CV_BIRTH"></result>
+            <result property="bp" column="CV_BP"></result>
+            <result property="edu" column="CV_EDU"></result>
+            <result property="major" column="CV_MAJOR"></result>
+            <result property="email" column="CV_EMAIL"></result>
+            <result property="phone" column="CV_PHONE"></result>
+            <result property="school" column="CV_SCHOOL"></result>
+            <result property="hobg" column="CV_HOBG"></result>
+            <result property="selfeval" column="CV_SELFEVAL"></result>
+            <result property="cvname" column="CV_CVNAME"></result>
+            <result property="cardno" column="CV_CARDNO"></result>
+            <result property="zp" column="CV_ZP"></result>
+            <result property="skill" column="CV_SKILL"></result>
+            <association property="user" javaType="com.iotek.model.User">
+                <id property="id" column="U_ID"></id>
+                <result property="name" column="U_NAME"></result>
+                <result property="pass" column="U_PASS"></result>
             </association>
         </association>
     </resultMap>

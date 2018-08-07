@@ -40,4 +40,7 @@ public class DepaServiceImpl implements DepaService{
         return depaMapper.getAllDepaByPage(begin, end);
     }
 
+    public Depa getDepaByDid1(int did) {
+        return depaMapper.getDepaByDid1(did);
+    }
 }

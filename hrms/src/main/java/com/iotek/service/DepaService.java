@@ -14,4 +14,5 @@ public interface DepaService {
     List<Depa> getAllDepa();
     Depa getDepaByDid(int did);
     List<Depa> getAllDepaByPage(int begin,int end);
+    Depa getDepaByDid1(int did);//无需职位关联
 }

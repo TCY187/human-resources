@@ -24,4 +24,5 @@ public interface EmpService {
     Emp getEmpByEid(int eid);
     boolean updateEmpState(Emp emp);
     boolean updateEmpDP(Emp emp);
+    boolean updateEmpNP(Emp emp);//ÅÉ·¢ÕËºÅÃÜÂë
 }

@@ -10,6 +10,7 @@ public class Interview {
     private Integer state;//0表示发出邀请，1表示接受邀请，2表示拒绝邀请,3表示录用，4表示不录用
     private String address;
     private String remarks;
+    private CV cv;
 
     public Interview() {
     }
@@ -20,6 +21,14 @@ public class Interview {
         this.state = state;
         this.address = address;
         this.remarks = remarks;
+    }
+
+    public CV getCv() {
+        return cv;
+    }
+
+    public void setCv(CV cv) {
+        this.cv = cv;
     }
 
     public Integer getId() {
@@ -79,6 +88,7 @@ public class Interview {
                 ", state=" + state +
                 ", address='" + address + '\'' +
                 ", remarks='" + remarks + '\'' +
+                ", cv=" + cv +
                 '}';
     }
 }

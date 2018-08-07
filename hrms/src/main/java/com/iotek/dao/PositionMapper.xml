@@ -21,6 +21,9 @@
         SELECT rownum rn,p.* ,d.*from T_POSITION p,T_DEPA d  WHERE P_DID=#{0} and P_DID=D_ID)a
         where rn between #{1} and #{2}
     </select>
+    <select id="getAllPosition" resultMap="pMap">
+        SELECT * FROM T_POSITION
+    </select>
     <resultMap id="pMap" type="com.iotek.model.Position">
         <id property="id" column="P_ID"></id>
         <result property="pname" column="P_PNAME"></result>

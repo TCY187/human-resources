@@ -3,10 +3,13 @@
 <mapper namespace="com.iotek.dao.EmpMapper">
 
     <insert id="saveEmp">
+        <selectKey resultType="Integer" order="BEFORE" keyProperty="id">
+            SELECT SEQ_T_EMP.nextval FROM DUAL
+        </selectKey>
         INSERT into T_EMP(E_ID, E_UNAME, E_SEX, E_BIRTH, E_BP, E_EDU, E_MAJOR, E_EMAIL,
-        E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE) VALUES
-        (SEQ_T_EMP.nextval,#{uname},#{sex},#{birth},#{bp},#{edu},#{major},#{email},#{phone},#{school},
-        #{cardno},#{ename},#{pass},#{depa.id},#{position.id},#{state})
+        E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE,E_ENTRYTIME,E_INTRO) VALUES
+        (#{id},#{uname},#{sex},#{birth},#{bp},#{edu},#{major},#{email},#{phone},#{school},
+        #{cardno},null,null,#{depa.id},#{position.id},#{state},sysdate,null)
     </insert>
     <update id="updateEmp">
         UPDATE T_EMP SET E_UNAME=#{uname}, E_SEX=#{sex}, E_BIRTH=#{birth}, E_BP=#{bp},
@@ -21,6 +24,9 @@
     </update>
     <update id="updateEmpDP">
         UPDATE T_EMP SET E_PID=#{position.id} ,E_DID=#{depa.id} where E_ID=#{id}
+    </update>
+    <update id="updateEmpNP">
+        UPDATE T_EMP SET E_ENAME=#{ename},E_PASS=#{pass} where E_ID=#{id}
     </update>
     <delete id="deleteEmp">
         DELETE FROM T_EMP where E_ID=#{id}

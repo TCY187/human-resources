@@ -14,4 +14,5 @@ public interface PositionMapper {
     boolean deletePositionByDid(int did);
     List<Position> getPositionByDid(int did);
     List<Position> getPositionByDidAndPage(int did,int begin,int end);
+    List<Position> getAllPosition();
 }

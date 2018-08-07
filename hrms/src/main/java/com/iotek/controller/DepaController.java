@@ -107,5 +107,20 @@ public class DepaController {
         model.addAttribute("operateDepaerror","不可删除");
         return "operateD";
     }
-
+    @RequestMapping("/addDepa")
+    public String addDepa(){
+        return "addDepa";
+    }
+    @RequestMapping("/addDepa1")
+    public String addDepa1(Model model,Depa depa){
+        List<Depa> depaList = depaService.getAllDepa();
+        for(int i=0;i<depaList.size();i++){
+            if(depaList.get(i).getDname().equals(depa.getDname())){
+                model.addAttribute("depaerror","已有该部门名");
+                return "addDepa";
+            }
+        }
+        depaService.saveDepa(depa);
+        return "managerSuccess";
+    }
 }

@@ -76,4 +76,8 @@ public class EmpServiceImpl implements EmpService{
     public boolean updateEmpDP(Emp emp) {
         return empMapper.updateEmpDP(emp);
     }
+
+    public boolean updateEmpNP(Emp emp) {
+        return empMapper.updateEmpNP(emp);
+    }
 }
