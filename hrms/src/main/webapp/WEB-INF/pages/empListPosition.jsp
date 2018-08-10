@@ -15,8 +15,39 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        tr{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        th{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        td{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        h1{
+            background-color: red;
+            margin: 0 auto;
+            text-align: center
+        }
+    </style>
 </head>
 <body>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
 <%
     List<Position> positionList = (List<Position>) session.getAttribute("emppositionList");
     int totalPages= (int) session.getAttribute("empptotalPages");
@@ -53,7 +84,7 @@
     <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <a href="getPositionByDepa?currentPage=<%=i%>"><%=i%></a>
+    <a href="getPositionByDepa?currentPage=<%=i%>" style="display:block;text-align:center;"><%=i%></a>
     <%
         }
     %>

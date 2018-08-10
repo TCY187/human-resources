@@ -70,6 +70,16 @@
     <select id="getEmpByEid" resultMap="empMap">
         SELECT * FROM T_EMP,T_DEPA,T_POSITION where E_ID=#{id} AND E_DID=D_ID AND E_PID = P_ID
     </select>
+    <select id="getQuitEmp" resultMap="empMap">
+        SELECT * FROM T_EMP where E_STATE=#{state}
+    </select>
+    <select id="getQuitEmpAndPage" resultMap="empMap">
+        SELECT E_ID, E_UNAME, E_SEX, E_BIRTH, E_BP, E_EDU, E_MAJOR, E_EMAIL,
+        E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE,E_ENTRYTIME from (
+        SELECT rownum rn,e.* from T_EMP e where E_STATE=#{0}
+        )a
+        where rn between #{1} and #{2}
+    </select>
 
     <resultMap id="empMap" type="com.iotek.model.Emp">
         <id property="id" column="E_ID"></id>

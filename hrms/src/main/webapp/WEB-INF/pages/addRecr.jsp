@@ -20,6 +20,7 @@
     <script>
         $(function () {
             $("#selectDep").change(function () {
+                //alert("aaa")
                 var sel=$("#selectDep option:selected").val();
                 alert(sel);
                 $.getJSON("getDepa1","key="+sel,function (obj) {
@@ -60,18 +61,18 @@
 <jsp:include page="/head.jsp"></jsp:include>
 <br/>
 <div>
-<form action="relieveguard1" method="post">
+<form action="addRecr1" method="post">
     请选择部门和职位：
     <select id="selectDep" name="selectDep">
         <option>请选择</option>
-        <c:forEach var="i" begin="0" end="${fn:length(sessionScope.depaList)-1}">
-            <option value="${sessionScope.depaList[i].id}" class="option1">${sessionScope.depaList[i].dname}</option>
+        <c:forEach var="i" begin="0" end="${fn:length(sessionScope.addRecrdepaList)-1}">
+            <option value="${sessionScope.addRecrdepaList[i].id}" class="option1">${sessionScope.addRecrdepaList[i].dname}</option>
         </c:forEach>
     </select>
     <select id="selectPosition" name="selectPosition">
         <option>请选择</option>
     </select>
-    <input type="submit" value="换岗">
+    <input type="submit" value="确定">
 </form>
 </div>
 </body>

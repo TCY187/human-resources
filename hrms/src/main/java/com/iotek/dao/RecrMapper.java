@@ -16,5 +16,7 @@ public interface RecrMapper {
     boolean deleteRecrByRid(int rid);
     boolean deleteRecrByDid(int did);
     boolean deleteRecrByPid(int pid);
+    boolean updateRecr(Recr recr);//修改状态,描述，和数量
     List<Integer> getRidByDid(int did);
+    boolean saveRecr(Recr recr);
 }

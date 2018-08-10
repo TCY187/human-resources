@@ -15,8 +15,39 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        tr{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        th{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        td{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        h1{
+            background-color: red;
+            margin: 0 auto;
+            text-align: center
+        }
+    </style>
 </head>
 <body>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
 <%
     Cul cul = (Cul) session.getAttribute("cul");
     Depa depa = (Depa) session.getAttribute("culdepa");

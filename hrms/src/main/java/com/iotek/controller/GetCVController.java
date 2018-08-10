@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -57,6 +59,10 @@ public class GetCVController {
         interview.setAddress(getCV.getRecr().getDepa().getDname());
         interview.setState(0);
         interview.setRemarks("нч");
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_YEAR, 1);
+        Date date = calendar.getTime();
+        interview.setTime(date);
         interview.setCv(getCV.getCv());
         System.out.println(interview);
         boolean flag1 = interviewService.saveInterview(interview);

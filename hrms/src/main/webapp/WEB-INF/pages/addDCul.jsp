@@ -14,8 +14,24 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        #div1{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+            padding-top: 100px;
+            background-image: url("/pic/register.jpg");
+            width: 800px;
+            height: 400px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
 <div id="div1">
     <form action="addDCul1" method="post">
         主题：<input type="text" name="theme"/><br/>

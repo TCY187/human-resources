@@ -21,8 +21,35 @@
             }
         }
     </script>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        tr{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        td{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        h1{
+            background-color: red;
+            margin: 0 auto;
+            text-align: center
+        }
+    </style>
 </head>
 <body>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
+<div>
 <a href="getEmpByEmp">个人信息</a>
 <a href="clockon">上班打卡</a>
 <a href="clockoff"  onClick="clockoff()">下班打卡</a>
@@ -33,5 +60,6 @@
 <a href="empgetDepa">部门查询</a>
 <br/><span>${clockerror}</span>
 <br/><span>${salerror}</span>
+</div>
 </body>
 </html>

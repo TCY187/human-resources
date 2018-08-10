@@ -12,4 +12,8 @@ public interface SalMapper {
     List<Sal> getSalByMonth();//找出当月生成的全部工资条
     List<Sal> getSalByMonthAndPage(int begin,int end);//找出当月生成的全部工资条
     Sal getSalByEidAndMonth(int eid);
+    Sal getSalBySid(int sid);
+    List<Sal> getSalByState(int state);
+    List<Sal> getSalByStateAndPage(int state,int begin,int end);
+    boolean updateSal(Sal sal);//复议
 }

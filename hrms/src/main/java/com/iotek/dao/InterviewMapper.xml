@@ -2,8 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.dao.InterviewMapper">
     <insert id="saveInterview">
-        INSERT INTO T_INTERVIEW(I_ID, I_UID, I_RID, I_STATE, I_ADDRESS, I_REMARKS,I_CVID) VALUES (
-        SEQ_T_INTERVIEW.nextval,#{user.id},#{recr.id},#{state},#{address},#{remarks},#{cv.id}
+        INSERT INTO T_INTERVIEW(I_ID, I_UID, I_RID, I_STATE, I_ADDRESS, I_REMARKS,I_CVID,I_TIME) VALUES (
+        SEQ_T_INTERVIEW.nextval,#{user.id},#{recr.id},#{state},#{address},#{remarks},#{cv.id},#{time}
         )
     </insert>
     <update id="updateIntState">
@@ -14,7 +14,7 @@
         AND I_UID=U_ID AND I_RID=R_ID AND R_PID = P_ID AND R_DID=D_ID and I_CVID=CV_ID
     </select>
     <select id="getInterviewByStateAndPage" resultMap="intMap">
-        SELECT I_ID,I_UID,I_RID,I_STATE,I_ADDRESS,I_REMARKS,U_NAME,P_PNAME,D_DNAME,P_JSAL,P_PF FROM (
+        SELECT I_ID,I_UID,I_RID,I_STATE,I_ADDRESS,I_REMARKS,I_TIME,U_NAME,P_PNAME,D_DNAME,P_JSAL,P_PF FROM (
         SELECT rownum rn ,i.* ,u.*,r.*,p.*,d.*from T_INTERVIEW i,T_USER u,
         T_RECR r,T_POSITION p,T_DEPA d WHERE I_STATE=#{0}
         AND I_UID=U_ID AND I_RID=R_ID AND R_PID = P_ID AND R_DID=D_ID)a
@@ -25,7 +25,7 @@
         AND I_UID=U_ID AND I_RID=R_ID AND R_PID = P_ID AND R_DID=D_ID
     </select>
     <select id="getInterviewByStateAndUidAndPage" resultMap="intMap">
-        SELECT I_ID,I_UID,I_RID,I_STATE,I_ADDRESS,I_REMARKS,U_NAME,P_PNAME,D_DNAME,P_JSAL,P_PF FROM (
+        SELECT I_ID,I_UID,I_RID,I_STATE,I_ADDRESS,I_REMARKS,I_TIME,U_NAME,P_PNAME,D_DNAME,P_JSAL,P_PF FROM (
         SELECT rownum rn ,i.* ,u.*,r.*,p.*,d.*from T_INTERVIEW i,T_USER u,
         T_RECR r,T_POSITION p,T_DEPA d WHERE I_STATE=#{0} and I_UID=#{1}
         AND I_UID=U_ID AND I_RID=R_ID AND R_PID = P_ID AND R_DID=D_ID)a
@@ -40,6 +40,7 @@
         <result property="state" column="I_STATE"></result>
         <result property="address" column="I_ADDRESS"></result>
         <result property="remarks" column="I_REMARKS"></result>
+        <result property="time" column="I_TIME"></result>
         <association property="user" javaType="com.iotek.model.User">
             <id property="id" column="U_ID"></id>
             <result property="name" column="U_NAME"></result>

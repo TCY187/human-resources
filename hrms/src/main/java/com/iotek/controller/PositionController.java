@@ -30,7 +30,7 @@ public class PositionController {
     @Resource
     private PositionService positionService;
     @RequestMapping("/getPositionByDepa")
-    public String getPositionByDepa(int did1, @RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session){
+    public String getPositionByDepa(@RequestParam(value = "did1")int did1, @RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session){
         List<Position> positionList = positionService.getPositionByDid(did1);
         int totalNum=positionList.size();
         int pageSize=5;
@@ -40,7 +40,7 @@ public class PositionController {
         List<Position> positionList1 = positionService.getPositionByDidAndPage(did1,begin,end);
         session.setAttribute("positionList",positionList1);
         session.setAttribute("ptotalPages",totalPages);
-        session.setAttribute("did",did1);
+        session.setAttribute("did",did1+"");
         return "operatePosition";
     }
     @RequestMapping("/empgetPositionByDepa")

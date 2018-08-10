@@ -15,8 +15,39 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        tr{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        th{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        td{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        h1{
+            background-color: red;
+            margin: 0 auto;
+            text-align: center
+        }
+    </style>
 </head>
 <body>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
 <%
     List<Interview> interviewList = (List<Interview>) session.getAttribute("interviewList");
     int totalPages= (int) session.getAttribute("intGCVtotalPages");
@@ -29,6 +60,7 @@
             <th>职位</th>
             <th>部门</th>
             <th>地址</th>
+            <th>时间</th>
             <th>备注</th>
             <th>接受</th>
             <th>不接受</th>
@@ -40,6 +72,7 @@
             <td><%=interviewList.get(i).getId()%></td>
             <td><%=interviewList.get(i).getRecr().getPosition().getPname()%></td>
             <td><%=interviewList.get(i).getRecr().getDepa().getDname()%></td>
+            <td><%=interviewList.get(i).getTime()%></td>
             <td><%=interviewList.get(i).getAddress()%></td>
             <td><%=interviewList.get(i).getRemarks()%></td>
             <td>
@@ -62,7 +95,7 @@
         <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <a href="getuserInt?currentPage=<%=i%>"><%=i%></a>
+    <a href="getuserInt?currentPage=<%=i%>" style="display:block;text-align:center;"><%=i%></a>
         <%
         }
     %>

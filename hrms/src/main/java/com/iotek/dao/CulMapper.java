@@ -13,6 +13,7 @@ public interface CulMapper {
     List<Cul> getCulByStateAndPage(int state,int begin,int end);
     boolean saveCul(Cul cul);
     boolean updateCulStateByCid(int state, Date issuetime, int cid);
+    boolean updateCulStateByCid1(int state, int cid);//³·»Ø
     Cul getCulByCid(int cid);
     boolean deleteCulByCid(int cid);
     boolean updateCulByCid(Cul cul);

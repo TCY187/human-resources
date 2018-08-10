@@ -19,12 +19,12 @@ public class ManagerController {
     @RequestMapping("/manlogin")
     public String manlogin(Manager manager, HttpSession session, Model model){
         Manager manager1 = managerService.getManByNAndP(manager);
-        if (null!=manager){
+        if (null!=manager1){
             session.setAttribute("manager",manager1);
             return "managerSuccess";
         }else {
             model.addAttribute("manlogerror","用户名或密码错误");
-            return "../../login";
+            return "manlogin1";
         }
     }
 }

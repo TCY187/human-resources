@@ -16,8 +16,34 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        tr{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        td{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        h1{
+            background-color: red;
+            margin: 0 auto;
+            text-align: center
+        }
+    </style>
 </head>
 <body>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
 <%
     Sal sal = (Sal)session.getAttribute("esal");
 %>
@@ -34,6 +60,7 @@
             <th>社保</th>
             <th>总薪资</th>
             <th>备注</th>
+            <th>申请复议</th>
         </tr>
         <tr>
             <td><%=sal.getEmp().getUname()%></td>
@@ -45,6 +72,12 @@
             <td><%=sal.getSssal()%></td>
             <td><%=sal.getSal()%></td>
             <td><%=sal.getIntro()%></td>
+            <td>
+                <form action="fuyi" method="post">
+                    <input type="hidden" name="sid" value="<%=sal.getId()%>">
+                    <input type="submit" value="申请复议">
+                </form>
+            </td>
         </tr>
     </table>
 </body>

@@ -17,12 +17,15 @@
         SELECT * FROM T_POSITION WHERE P_DID=#{did}
     </select>
     <select id="getPositionByDidAndPage" resultMap="pMap">
-        SELECT P_PNAME,P_ID,P_JSAL,P_PF,D_DNAME,P_ID FROM (
+        SELECT P_PNAME,P_ID,P_JSAL,P_PF,D_DNAME,P_ID,D_ID FROM (
         SELECT rownum rn,p.* ,d.*from T_POSITION p,T_DEPA d  WHERE P_DID=#{0} and P_DID=D_ID)a
         where rn between #{1} and #{2}
     </select>
     <select id="getAllPosition" resultMap="pMap">
         SELECT * FROM T_POSITION
+    </select>
+    <select id="getPositionByPid" resultMap="pMap">
+        SELECT * FROM T_POSITION ,T_DEPA WHERE P_ID=#{pid} AND P_DID=D_ID
     </select>
     <resultMap id="pMap" type="com.iotek.model.Position">
         <id property="id" column="P_ID"></id>

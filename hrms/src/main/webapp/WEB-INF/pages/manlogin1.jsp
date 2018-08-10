@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: TCY
-  Date: 2018/8/2
-  Time: 17:03
+  Date: 2018/8/8
+  Time: 13:14
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -33,15 +33,14 @@
 <jsp:include page="/head.jsp"></jsp:include>
 <br/>
 <div id="div1">
-    <form action="addECul1" method="post">
-        主题：<input type="text" name="theme"/><br/>
-        内容：<input type="text" name="content"/><br/>
-        地点：<input type="text" name="address"/><br/>
-        开始：<input type="date" name="betime"/><br/>
-        结束：<input type="date" name="entime"/><br/>
-        <input type="submit" value="添加">
+    <h2>管理员登录</h2>
+    <form action="manlogin" method="post">
+        账号：<input type="text" name="mname"/><br/>
+        密码：<input type="password" name="mpass"/><br/>
+        <input type="submit" value="登录">
     </form>
+    <span>${manlogerror}</span>
+    <span>${manclogerror}</span>
 </div>
-<a href="msuccess">返回管理员主页</a>
 </body>
 </html>

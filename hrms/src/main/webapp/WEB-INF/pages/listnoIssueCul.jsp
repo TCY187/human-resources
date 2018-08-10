@@ -16,11 +16,20 @@
     <base href="<%=basePath%>"/>
     <title></title>
     <style>
-        #div1{
-            width: 800px;
+        div{
+            width: 1000px;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 100px;
+        }
+        tr{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        th{
+            width: 200px;
+            height: 30px;
+            text-align: center;
         }
         td{
             width: 200px;
@@ -35,6 +44,10 @@
     </style>
 </head>
 <body>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
 <%
     List<Cul> culList = (List<Cul>) session.getAttribute("noIssueCulList");
     int totalPages= (int) session.getAttribute("noIssueCultotalPages");
@@ -50,7 +63,7 @@
             <th>结束</th>
             <th>地址</th>
             <th>状态</th>
-            <th>发布时间</th>
+            <th>发布</th>
             <th>删除</th>
             <th>修改</th>
         </tr>
@@ -65,7 +78,12 @@
             <td><%=culList.get(i).getEndtime()%></td>
             <td><%=culList.get(i).getAddress()%></td>
             <td><%=culList.get(i).getState()%></td>
-            <td><%=culList.get(i).getIssuetime()%></td>
+            <td>
+                <form action="issueCul" method="post">
+                    <input type="hidden" name="cid" value="<%=culList.get(i).getId()%>">
+                    <input type="submit" value="发布">
+                </form>
+            </td>
             <td>
                 <form action="deleteCul" method="post">
                     <input type="hidden" name="cid1" value="<%=culList.get(i).getId()%>">
@@ -86,9 +104,10 @@
         <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <a href="?currentPage=<%=i%>"><%=i%></a>
+    <a href="?currentPage=<%=i%>" style="display:block;text-align:center;"><%=i%></a>
         <%
         }
     %>
+    <a href="msuccess">返回管理员主页</a>
 </body>
 </html>

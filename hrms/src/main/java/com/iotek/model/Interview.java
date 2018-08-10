@@ -1,5 +1,7 @@
 package com.iotek.model;
 
+import java.util.Date;
+
 /**
  * Created by TCY on 2018/7/29.
  */
@@ -11,6 +13,7 @@ public class Interview {
     private String address;
     private String remarks;
     private CV cv;
+    private Date time;
 
     public Interview() {
     }
@@ -77,6 +80,14 @@ public class Interview {
 
     public void setRemarks(String remarks) {
         this.remarks = remarks;
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 
     @Override

@@ -43,6 +43,26 @@ public class CVController {
             session.setAttribute("cvList",cvList1);
             session.setAttribute("cvtotalPages",totalPages);
             session.setAttribute("recr",recr);
+            return "sendCV";
+        }
+        model.addAttribute("clogerror","ÇëÏÈµÇÂ¼");
+        return "../../login";
+    }
+    @RequestMapping("/getCV1")
+    public String getCV1(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage,HttpSession session, Model model){
+        User user = (User) session.getAttribute("user");
+        if(user!=null){
+            System.out.println(1);
+            List<CV> cvList = cvService.getCVByUid(user.getId());
+            System.out.println(cvList);
+            int totalNum=cvList.size();
+            int pageSize=5;
+            int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+            int begin = (currentPage-1)*pageSize+1;
+            int end = (currentPage-1)*pageSize+pageSize;
+            List<CV> cvList1 = cvService.getCVByUidAndPage(user.getId(),begin,end);
+            session.setAttribute("lcvList",cvList1);
+            session.setAttribute("lcvtotalPages",totalPages);
             return "listCV";
         }
         model.addAttribute("clogerror","ÇëÏÈµÇÂ¼");

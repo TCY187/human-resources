@@ -36,7 +36,9 @@ public class SalController {
     public String payMoney(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, Model model, HttpSession session){
         Calendar c = Calendar.getInstance();
         int day = c.get(Calendar.DATE);
-        if(day==10){
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH)+1;
+        if(day<10){
             model.addAttribute("payMoneyerror","还未到工资结算日");
             return "managerSuccess";
         }
@@ -81,7 +83,7 @@ public class SalController {
                 sal.setRapsal(rapsal);
                 sal.setSal(allsal);
                 sal.setState(0);
-                sal.setIntro("上月工资");
+                sal.setIntro(year+"年"+(month-1)+"月工资");
                 System.out.println(sal);
                 salService.saveSal(sal);
             }
@@ -100,12 +102,60 @@ public class SalController {
     @RequestMapping("/getSalByEid")
     public String getSalByEid(HttpSession session,Model model){
         Emp emp  = (Emp) session.getAttribute("emp");
-        Sal sal = salService.getSalByEidAndMonth(emp.getId());
+        Sal sal = salService.getSalByEidAndMonth(emp.getId());//查询上个月工资
         if(sal==null){
             model.addAttribute("salerror","上月工资还未发放");
             return "empSuccess";
         }
         session.setAttribute("esal",sal);
         return "listSal";
+    }
+    @RequestMapping("/fuyi")
+    public String fuyi(int sid){
+        Sal sal = salService.getSalBySid(sid);
+        sal.setState(1);
+        sal.setIntro(sal.getIntro()+",申请复议");
+        salService.updateSal(sal);
+        return "empSuccess";
+    }
+    @RequestMapping("/gzfy")//工资复议审核
+    public String gzfy(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session,Model model){
+        int state = 1;
+        List<Sal> salList = salService.getSalByState(1);
+        if(salList.size()==0){
+            model.addAttribute("gzfyerror","当前没有工资复议");
+            return "managerSuccess";
+        }
+        int totalNum=salList.size();
+        int pageSize=5;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int begin = (currentPage-1)*pageSize+1;
+        int end = (currentPage-1)*pageSize+pageSize;
+        List<Sal> salList1 = salService.getSalByStateAndPage(state,begin,end);
+        session.setAttribute("gzfysalList",salList1);
+        session.setAttribute("gzfysaltotalPages",totalPages);
+        return "gzfy";
+    }
+    @RequestMapping("/gzfy1")//工资复议审核
+    public String gzfy1(int sid,@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session,Model model){
+        Sal sal = salService.getSalBySid(sid);
+        sal.setState(2);
+        sal.setIntro(sal.getIntro()+",已处理");
+        salService.updateSal(sal);
+        int state = 1;
+        List<Sal> salList = salService.getSalByState(1);
+        if(salList.size()==0){
+            model.addAttribute("gzfyerror","当前没有工资复议");
+            return "managerSuccess";
+        }
+        int totalNum=salList.size();
+        int pageSize=5;
+        int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
+        int begin = (currentPage-1)*pageSize+1;
+        int end = (currentPage-1)*pageSize+pageSize;
+        List<Sal> salList1 = salService.getSalByStateAndPage(state,begin,end);
+        session.setAttribute("gzfysalList",salList1);
+        session.setAttribute("gzfysaltotalPages",totalPages);
+        return "gzfy";
     }
 }

@@ -20,4 +20,12 @@ public class SuccessController {
     public String esuccess(){
         return "empSuccess";
     }
+    @RequestMapping("/manlogin1")
+    public String manlogin1(){
+        return "manlogin1";
+    }
+    @RequestMapping("/emplogin1")
+    public String emplogin1(){
+        return "emplogin1";
+    }
 }

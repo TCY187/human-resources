@@ -32,8 +32,35 @@
             })
         })
     </script>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        tr{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        td{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        h1{
+            background-color: red;
+            margin: 0 auto;
+            text-align: center
+        }
+    </style>
 </head>
 <body>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
+<div>
 <form action="relieveguard1" method="post">
     请选择部门和职位：
     <select id="selectDep" name="selectDep">
@@ -47,5 +74,6 @@
     </select>
     <input type="submit" value="换岗">
 </form>
+</div>
 </body>
 </html>

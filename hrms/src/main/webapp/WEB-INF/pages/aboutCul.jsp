@@ -16,11 +16,15 @@
     <base href="<%=basePath%>"/>
     <title></title>
     <style>
-        #div1{
-            width: 800px;
+        div{
+            width: 1000px;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 100px;
+        }
+        tr{
+            width: 200px;
+            height: 30px;
+            text-align: center;
         }
         td{
             width: 200px;
@@ -35,6 +39,10 @@
     </style>
 </head>
 <body>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
 <%
     List<Cul> culList = (List<Cul>) session.getAttribute("culList");
     int totalPages= (int) session.getAttribute("cultotalPages");
@@ -79,11 +87,12 @@
         <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <a href="?currentPage=<%=i%>"><%=i%></a>
+    <a href="aboutCul?currentPage=<%=i%>" style="display:block;text-align:center;"><%=i%></a>
         <%
         }
     %>
     <span>${recallerror}</span>
+    <a href="msuccess">返回管理员主页</a>
     <a href="noIssueCul">查看未发布培训</a>
     <a href="addECul">新增员工培训</a>
     <a href="addDCul">新增部门培训</a>

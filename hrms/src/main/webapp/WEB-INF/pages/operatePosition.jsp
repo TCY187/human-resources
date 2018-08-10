@@ -15,11 +15,43 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        tr{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        th{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        td{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        h1{
+            background-color: red;
+            margin: 0 auto;
+            text-align: center
+        }
+    </style>
 </head>
 <body>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
 <%
     List<Position> positionList = (List<Position>) session.getAttribute("positionList");
     int totalPages= (int) session.getAttribute("ptotalPages");
+//    int j = positionList.get(0).getDepa().getId();
 %>
 <div id="div1">
     <h1>职位浏览</h1>
@@ -60,11 +92,12 @@
     <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <a href="getPositionByDepa?currentPage=<%=i%>"><%=i%></a>
+    <a href="getPositionByDepa?currentPage=<%=i%>&did1=<%=positionList.get(0).getDepa().getId()%>" style="display:block;text-align:center;"><%=i%></a>
     <%
         }
     %>
     <span>${operatePerror}</span>
+    <a href="msuccess">返回管理员主页</a>
 </div>
 </body>
 </html>

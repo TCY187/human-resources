@@ -25,4 +25,6 @@ public interface EmpMapper {
     boolean updateEmpState(Emp emp);
     boolean updateEmpDP(Emp emp);
     boolean updateEmpNP(Emp emp);//ÅÉ·¢ÕËºÅÃÜÂë
+    List<Emp> getQuitEmp(int state);
+    List<Emp> getQuitEmpAndPage(int state,int begin,int end);
 }

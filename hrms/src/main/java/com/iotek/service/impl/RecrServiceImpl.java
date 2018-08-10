@@ -50,4 +50,12 @@ public class RecrServiceImpl implements RecrService{
     public boolean deleteRecrByPid(int pid) {
         return recrMapper.deleteRecrByPid(pid);
     }
+
+    public boolean saveRecr(Recr recr) {
+        return recrMapper.saveRecr(recr);
+    }
+
+    public boolean updateRecr(Recr recr) {
+        return recrMapper.updateRecr(recr);
+    }
 }

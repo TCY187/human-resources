@@ -96,7 +96,7 @@ public class EmpController {
             session.setAttribute("emp",emp1);
             return "empSuccess";
         }
-        model.addAttribute("emplogerror","登录名或密码错误");
+        model.addAttribute("emplogerror","登陆失败");
         return "../../login";
     }
     @RequestMapping("/getEmpByEmp")
@@ -151,7 +151,7 @@ public class EmpController {
             emp.setState(1);
             empService.updateEmpState(emp);
         }else{
-            model.addAttribute("stateerror","该员工未满一个月，不可转正");
+            model.addAttribute("stateerror","未满一个月，不可转正");
         }
         int state = 0;
         List<Emp> empList = empService.getEmpByState(state);
@@ -173,6 +173,12 @@ public class EmpController {
         session.setAttribute("depaList",depaList);
         return "relieveguard";
     }
+    @RequestMapping("/addRecr")
+    public String addRecr(HttpSession session){
+        List<Depa> depaList = depaService.getAllDepa();
+        session.setAttribute("addRecrdepaList",depaList);
+        return "addRecr";
+    }
     @RequestMapping("/relieveguard1")
     public String relieveguard1(int selectDep,int selectPosition,HttpSession session){
         Emp emp = (Emp) session.getAttribute("RGemp");
@@ -188,13 +194,14 @@ public class EmpController {
     @RequestMapping("/getquitEmp")
     public String getquitEmp(Model model,@RequestParam(value = "currentPage",defaultValue = "1")int currentPage,HttpSession session){
         int state = 2;
-        List<Emp> empList = empService.getEmpByState(state);
+        List<Emp> empList = empService.getQuitEmp(state);
         int totalNum=empList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
         int begin = (currentPage-1)*pageSize+1;
         int end = (currentPage-1)*pageSize+pageSize;
-        List<Emp> empList1= empService.getEmpByStateAndPage(state,begin,end);
+        List<Emp> empList1= empService.getQuitEmpAndPage(state,begin,end);
+        System.out.println(empList1);
         session.setAttribute("quitempList",empList1);
         session.setAttribute("quitemptotalPages",totalPages);
         return "quitListEmp";

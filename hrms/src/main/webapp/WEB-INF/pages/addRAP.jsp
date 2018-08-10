@@ -13,9 +13,24 @@
 <html>
 <head>
     <base href="<%=basePath%>"/>
-    <title></title>
+    <style>
+        #div1{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px;
+            padding-top: 100px;
+            background-image: url("/pic/register.jpg");
+            width: 800px;
+            height: 400px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
 <div id="div1">
     <form action="saveRAP1" method="post">
         金额：<input type="number" step="50" name="money" id="number" value="0"><br/>

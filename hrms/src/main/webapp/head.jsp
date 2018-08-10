@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
-  User: TCY
-  Date: 2018/7/25
-  Time: 13:29
+  User: grzha
+  Date: 2018/8/6
+  Time: 15:01
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -14,8 +14,19 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        #head{
+            background-image: url("pic/head.jpg");
+            width: 1000px;
+            height: 85px;
+            margin-right: auto;
+            margin-left: auto;
+        }
+    </style>
 </head>
 <body>
-<h1>成功登录</h1>
+    <div id="head">
+    </div>
 </body>
 </html>
+

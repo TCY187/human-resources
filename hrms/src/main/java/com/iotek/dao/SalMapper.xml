@@ -5,6 +5,9 @@
         INSERT into T_SAL(S_ID, S_MONTHTIME, S_EID, S_JSAL, S_PFSAL, S_OVERSAL, S_RAPSAL, S_SSSAL, S_SAL, S_STATE, S_INTRO)
         VALUES (SEQ_T_SAL.nextval,sysdate,#{emp.id},#{jsal},#{pfsal},#{oversal},#{rapsal},#{sssal},#{sal},#{state},#{intro})
     </insert>
+    <update id="updateSal">
+        UPDATE T_SAL SET S_STATE=#{state},S_INTRO=#{intro} WHERE S_ID=#{id}
+    </update>
     <select id="getSalByMonth" resultMap="salMap">
         SELECT * FROM T_SAL,T_EMP WHERE trunc(sysdate)=trunc(S_MONTHTIME) AND S_EID=E_ID
     </select>
@@ -15,6 +18,17 @@
         SELECT S_ID, S_MONTHTIME, S_EID, S_JSAL, S_PFSAL, S_OVERSAL, S_RAPSAL, S_SSSAL, S_SAL, S_STATE, S_INTRO,E_UNAME FROM (
         SELECT rownum rn,s.*,e.* FROM T_SAL s,T_EMP e WHERE trunc(sysdate)=trunc(S_MONTHTIME) AND S_EID=E_ID
         ) a where rn between #{0} and #{1}
+    </select>
+    <select id="getSalBySid" resultMap="salMap">
+        SELECT * FROM T_SAL WHERE S_ID=#{sid}
+    </select>
+    <select id="getSalByState" resultMap="salMap">
+        SELECT * FROM T_SAL,T_EMP WHERE S_STATE=#{state} AND S_EID=E_ID
+    </select>
+    <select id="getSalByStateAndPage" resultMap="salMap">
+        SELECT S_ID, S_MONTHTIME, S_EID, S_JSAL, S_PFSAL, S_OVERSAL, S_RAPSAL, S_SSSAL, S_SAL, S_STATE, S_INTRO,E_UNAME FROM (
+        SELECT rownum rn,s.*,e.* FROM T_SAL s,T_EMP e WHERE S_STATE=#{0} AND S_EID=E_ID
+        ) a where rn between #{1} and #{2}
     </select>
     <resultMap id="salMap" type="com.iotek.model.Sal">
         <id property="id" column="S_ID"></id>

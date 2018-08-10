@@ -27,6 +27,11 @@
             height: 30px;
             text-align: center;
         }
+        th{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
         h1{
             background-color: red;
             margin: 0 auto;
@@ -36,8 +41,8 @@
 </head>
 <body>
 <%
-    List<CV> cvList = (List<CV>) session.getAttribute("cvList");
-    int totalPages= (int) session.getAttribute("cvtotalPages");
+    List<CV> cvList = (List<CV>) session.getAttribute("lcvList");
+    int totalPages= (int) session.getAttribute("lcvtotalPages");
 %>
 <div id="div1">
     <h1>简历信息一览</h1>
@@ -48,7 +53,6 @@
             <th>姓名</th>
             <th>性别</th>
             <th>详情</th>
-            <th>投递</th>
             <th>删除</th>
         </tr>
         <%
@@ -66,12 +70,6 @@
                 </form>
             </td>
             <td>
-                <form method="post" action="sendCV">
-                    <input type="hidden" name="CVDId1" value="<%=cvList.get(i).getId()%>">
-                    <input type="submit" value="投递">
-                </form>
-            </td>
-            <td>
                 <form method="post" action="deleteCV">
                     <input type="hidden" name="CVDId2" value="<%=cvList.get(i).getId()%>">
                     <input type="submit" value="删除">
@@ -86,7 +84,7 @@
         <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <a href="getCV?currentPage=<%=i%>"><%=i%></a>
+    <a href="getCV1?currentPage=<%=i%>" style="display:block;text-align:center;"><%=i%></a>
         <%
         }
     %>

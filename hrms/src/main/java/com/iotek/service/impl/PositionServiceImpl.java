@@ -43,4 +43,8 @@ public class PositionServiceImpl implements PositionService{
     public List<Position> getAllPosition() {
         return positionMapper.getAllPosition();
     }
+
+    public Position getPositionByPid(int pid) {
+        return positionMapper.getPositionByPid(pid);
+    }
 }

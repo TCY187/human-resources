@@ -49,13 +49,11 @@
 <jsp:include page="/head.jsp"></jsp:include>
 <br/>
 <%
-    List<Recr> recrList = (List<Recr>) session.getAttribute("manrecrList");
-    int totalPages= (int) session.getAttribute("mantotalPages");
+    List<Recr> recrList = (List<Recr>) session.getAttribute("recr0List");
+    int totalPages= (int) session.getAttribute("recr0totalPages");
 %>
 <div id="div1">
-    <a href="addRecr">添加</a>
-    <a href="getRecr0">查看未发布的</a>
-    <h1>招聘信息一览</h1>
+    <h1>未发布招聘信息一览</h1>
     <table border="1" cellspacing="0">
         <tr>
             <th>id</th>
@@ -65,8 +63,9 @@
             <th>描述</th>
             <th>人数</th>
             <th>状态</th>
-            <th>时间</th>
-            <th>撤回</th>
+            <th>发布</th>
+            <th>修改</th>
+            <th>删除</th>
         </tr>
         <%
             for (int i = 0; i < recrList.size(); i++) {
@@ -79,11 +78,22 @@
             <td><%=recrList.get(i).getDesc()%></td>
             <td><%=recrList.get(i).getNum()%></td>
             <td><%=recrList.get(i).getState()%></td>
-            <td><%=recrList.get(i).getTime()%></td>
             <td>
-                <form action="recallRecr" method="post">
+                <form action="issueRecr" method="post">
                     <input type="hidden" name="rid" value="<%=recrList.get(i).getId()%>">
-                    <input type="submit" value="撤回">
+                    <input type="submit" value="发布">
+                </form>
+            </td>
+            <td>
+                <form action="updateRecr" method="post">
+                    <input type="hidden" name="rid1" value="<%=recrList.get(i).getId()%>">
+                    <input type="submit" value="修改">
+                </form>
+            </td>
+            <td>
+                <form action="deleteRecr" method="post">
+                    <input type="hidden" name="rid2" value="<%=recrList.get(i).getId()%>">
+                    <input type="submit" value="删除">
                 </form>
             </td>
         </tr>

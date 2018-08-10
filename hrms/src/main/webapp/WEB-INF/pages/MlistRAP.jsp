@@ -17,13 +17,22 @@
     <base href="<%=basePath%>"/>
     <title></title>
     <style>
-        #div1{
-            width: 800px;
+        div{
+            width: 1000px;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 100px;
+        }
+        tr{
+            width: 200px;
+            height: 30px;
+            text-align: center;
         }
         td{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        th{
             width: 200px;
             height: 30px;
             text-align: center;
@@ -36,6 +45,10 @@
     </style>
 </head>
 <body>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
 <%
     List<RAP> rapList = (List<RAP>) session.getAttribute("MrapList");
     int totalPages= (int) session.getAttribute("MraptotalPages");
@@ -80,7 +93,7 @@
     <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <a href="getRAPByEid?currentPage=<%=i%>"><%=i%></a>
+    <a href="getRAPByEid?currentPage=<%=i%>" style="display:block;text-align:center;"><%=i%></a>
     <%
         }
     %>

@@ -80,4 +80,12 @@ public class EmpServiceImpl implements EmpService{
     public boolean updateEmpNP(Emp emp) {
         return empMapper.updateEmpNP(emp);
     }
+
+    public List<Emp> getQuitEmp(int state) {
+        return empMapper.getQuitEmp(state);
+    }
+
+    public List<Emp> getQuitEmpAndPage(int state,int begin,int end) {
+        return empMapper.getQuitEmpAndPage(state, begin, end);
+    }
 }

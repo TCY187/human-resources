@@ -15,8 +15,34 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <style>
+        div{
+            width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        tr{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        td{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        h1{
+            background-color: red;
+            margin: 0 auto;
+            text-align: center
+        }
+    </style>
 </head>
 <body>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
 <%
     List<Emp> empList = (List<Emp>) session.getAttribute("quitempList");
     int totalPages= (int) session.getAttribute("quitemptotalPages");
@@ -38,8 +64,8 @@
             <td><%=empList.get(i).getId()%></td>
             <td><%=empList.get(i).getUname()%></td>
             <td><%=empList.get(i).getCardno()%></td>
-            <td><%=empList.get(i).getDepa().getDname()%></td>
-            <td><%=empList.get(i).getPosition().getPname()%></td>
+            <td><%="无"%></td>
+            <td><%="无"%></td>
         </tr>
         <%
             }
@@ -48,10 +74,12 @@
         <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <a href="getquitEmp?currentPage=<%=i%>"><%=i%></a>
+    <a href="getquitEmp?currentPage=<%=i%>" style="display:block;text-align:center;"><%=i%></a>
         <%
         }
     %>
-    <br/><span>${stateerror}</span>
+    <a href="msuccess">返回管理员主页</a>
+    <span>${stateerror}</span>
+
 </body>
 </html>

@@ -43,6 +43,7 @@ public class DepaController {
         int begin = (currentPage-1)*pageSize+1;
         int end = (currentPage-1)*pageSize+pageSize;
         List<Depa> depaList1 = depaService.getAllDepaByPage(begin,end);
+        System.out.println(depaList1);
         session.setAttribute("depaList1",depaList1);
         session.setAttribute("depatotalPages",totalPages);
         System.out.println(totalPages);

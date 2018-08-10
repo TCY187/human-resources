@@ -17,13 +17,22 @@
     <base href="<%=basePath%>"/>
     <title></title>
     <style>
-        #div1{
-            width: 800px;
+        div{
+            width: 1000px;
             margin-left: auto;
             margin-right: auto;
-            margin-top: -300px;
+        }
+        tr{
+            width: 200px;
+            height: 30px;
+            text-align: center;
         }
         td{
+            width: 200px;
+            height: 30px;
+            text-align: center;
+        }
+        th{
             width: 200px;
             height: 30px;
             text-align: center;
@@ -36,45 +45,39 @@
     </style>
 </head>
 <body>
-<%
-    User user = (User) session.getAttribute("user");
-%>
-<div id="d1">
-    <h2>游客登录</h2>
-    <form action="login" method="post" >
-        账号：<input type="text" name="name"/><br/>
-        密码：<input type="password" name="pass"/><br/>
+<br/>
+<br/>
+<jsp:include page="/head.jsp"></jsp:include>
+<br/>
+<br/>
+<div id="d1" style="background-color: blanchedalmond">
+    <form action="login" method="post" style="display: inline" >
+        账号：<input type="text" name="name"/>
+        密码：<input type="password" name="pass"/>
         <input type="submit" value="登录" >
     </form>
-    <form action="register1">
+    <form action="register1" style="display: inline">
         <input type="submit"  value="注册">
     </form>
-    <form action="getuserInt">
+</div>
+<br/>
+<br/>
+<div>
+    <form action="getuserInt" style="display: inline">
         <input type="submit"  value="查看面试邀请">
     </form>
+    <form action="getCV1" style="display: inline">
+        <input type="submit"  value="查看你的简历">
+    </form>
+    <a href="manlogin1">管理员登录</a>
+    <a href="emplogin1">员工登录</a>
+</div>
+<br/>
+<div>
     <span>${logerror}</span>
     <span>${clogerror}</span>
 </div>
-<div id="d2">
-    <h2>员工登录</h2>
-    <form action="emplogin" method="post">
-        账号：<input type="text" name="ename"/><br/>
-        密码：<input type="password" name="pass"/><br/>
-        <input type="submit" value="登录">
-    </form>
-    <span>${emplogerror}</span>
-    <span>${empclogerror}</span>
-</div>
-<div id="d3">
-    <h2>管理员登录</h2>
-    <form action="manlogin" method="post">
-        账号：<input type="text" name="mname"/><br/>
-        密码：<input type="password" name="mpass"/><br/>
-        <input type="submit" value="登录">
-    </form>
-    <span>${manlogerror}</span>
-    <span>${manclogerror}</span>
-</div>
+<br/>
 <%
     List<Recr> recrList = (List<Recr>) session.getAttribute("recrList");
     int totalPages= (int) session.getAttribute("totalPages");
@@ -119,7 +122,7 @@
     <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <a href="?currentPage=<%=i%>"><%=i%></a>
+    <a href="?currentPage=<%=i%>" style="display:block;text-align:center;"><%=i%></a>
     <%
         }
     %>

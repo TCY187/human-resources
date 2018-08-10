@@ -17,4 +17,6 @@ public interface RecrService {
     boolean deleteRecrByDid(int did);
     boolean deleteRecrByPid(int pid);
     List<Integer> getRidByDid(int did);
+    boolean saveRecr(Recr recr);
+    boolean updateRecr(Recr recr);//ÐÞ¸Ä×´Ì¬
 }

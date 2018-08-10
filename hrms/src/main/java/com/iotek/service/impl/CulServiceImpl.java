@@ -59,4 +59,8 @@ public class CulServiceImpl implements CulService {
     public List<Cul> getCulByEidAndState(int eid,int state) {
         return culMapper.getCulByEidAndState(eid,state);
     }
+
+    public boolean updateCulStateByCid1(int state, int cid) {
+        return culMapper.updateCulStateByCid1(state, cid);
+    }
 }

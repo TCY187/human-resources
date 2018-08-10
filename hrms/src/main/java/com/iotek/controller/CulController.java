@@ -34,12 +34,14 @@ public class CulController {
     public String aboutCul(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session){
         int state = 1;
         List<Cul> culList = culService.getCulByState(state);
+        System.out.println(culList);
         int totalNum=culList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
         int begin = (currentPage-1)*pageSize+1;
         int end = (currentPage-1)*pageSize+pageSize;
         List<Cul> culList1 = culService.getCulByStateAndPage(state,begin,end);
+        System.out.println(culList1);
         session.setAttribute("culList",culList1);
         session.setAttribute("cultotalPages",totalPages);
         return "aboutCul";
@@ -55,7 +57,7 @@ public class CulController {
         Date endtime = sdf.parse(entime);
         cul.setBegintime(begintime);
         cul.setEndtime(endtime);
-        cul.setState(0);//未发布
+        cul.setState(0);//δ????
         culService.saveCul(cul);
 //        int cid = cul.getId();
 //        System.out.println(cid);
@@ -68,6 +70,7 @@ public class CulController {
     @RequestMapping("/addDCul2")
     public String addDCul2(int did,HttpSession session){
         Depa depa = depaService.getDepaByDid(did);
+        System.out.println(depa);
         Cul cul = (Cul) session.getAttribute("cul");
         int cid = cul.getId();
         List<Emp> empList = empService.getEmpByDepa(did);
@@ -82,6 +85,7 @@ public class CulController {
     public String issueCul(int cid){
         int state = 1;
         Date issuetime = new Date();
+        System.out.println(issuetime);
         culService.updateCulStateByCid(state,issuetime,cid);
         return "managerSuccess";
     }
@@ -96,7 +100,7 @@ public class CulController {
         Date endtime = sdf.parse(entime);
         cul.setBegintime(begintime);
         cul.setEndtime(endtime);
-        cul.setState(0);//未发布
+        cul.setState(0);//δ????
         culService.saveCul(cul);
         int cid = cul.getId();
         Date date = new Date();
@@ -122,9 +126,8 @@ public class CulController {
         Date date = new Date();
         long time = (date.getTime()-cul.getIssuetime().getTime())/(1000*60);
         if(time<10){
-            Date date1 = null;
             int state1 = 0;
-            culService.updateCulStateByCid(state1,date1,cid);
+            culService.updateCulStateByCid1(state1,cid);
             int state = 1;
             List<Cul> culList = culService.getCulByState(state);
             int totalNum=culList.size();

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.iotek.dao.RecrMapper">
+    <insert id="saveRecr">
+        INSERT INTO T_RECR(R_ID, R_PID, R_DESC, R_NUM, R_STATE, R_TIME, R_DID) VALUES
+        (SEQ_T_RECR.nextval,#{position.id},#{desc},#{num},#{state},sysdate,#{depa.id})
+    </insert>
+    <update id="updateRecr">
+        UPDATE T_RECR set R_STATE=#{state},R_DESC=#{desc},R_NUM=#{num} where R_ID=#{id}
+    </update>
     <delete id="deleteRecrByRid">
         DELETE FROM T_RECR WHERE R_ID=#{rid}
     </delete>

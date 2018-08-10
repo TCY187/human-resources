@@ -15,4 +15,5 @@ public interface PositionService {
     List<Position> getPositionByDid(int did);
     List<Position> getPositionByDidAndPage(int did,int begin,int end);
     List<Position> getAllPosition();
+    Position getPositionByPid(int pid);
 }

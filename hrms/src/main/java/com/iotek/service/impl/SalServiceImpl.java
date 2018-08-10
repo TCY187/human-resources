@@ -31,4 +31,20 @@ public class SalServiceImpl implements SalService{
     public List<Sal> getSalByMonthAndPage(int begin, int end) {
         return salMapper.getSalByMonthAndPage(begin, end);
     }
+
+    public Sal getSalBySid(int sid) {
+        return salMapper.getSalBySid(sid);
+    }
+
+    public List<Sal> getSalByState(int state) {
+        return salMapper.getSalByState(state);
+    }
+
+    public List<Sal> getSalByStateAndPage(int state, int begin, int end) {
+        return salMapper.getSalByStateAndPage(state, begin, end);
+    }
+
+    public boolean updateSal(Sal sal) {
+        return salMapper.updateSal(sal);
+    }
 }

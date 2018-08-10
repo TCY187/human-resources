@@ -19,7 +19,7 @@
     </select>
     <select id="getAllDepaByPage" resultMap="depaMapper">
         SELECT D_ID,D_DNAME FROM (
-        SELECT rownum rn ,p.*,d.*from T_POSITION p,T_DEPA d
+        SELECT rownum rn ,d.* from T_DEPA d
         )a
         where rn between #{0} and #{1}
     </select>
