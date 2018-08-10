@@ -96,5 +96,6 @@
     <a href="noIssueCul">查看未发布培训</a>
     <a href="addECul">新增员工培训</a>
     <a href="addDCul">新增部门培训</a>
+</div>
 </body>
 </html>

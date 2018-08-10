@@ -79,9 +79,10 @@
         <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <a href="getEmpByDepa?currentPage=<%=i%>" style="display:block;text-align:center;"><%=i%></a>
+    <a href="getEmpByDepa?currentPage=<%=i%>&did3=<%=empList.get(0).getDepa().getId()%>" style="display:block;text-align:center;"><%=i%></a>
         <%
         }
     %>
+</div>
 </body>
 </html>

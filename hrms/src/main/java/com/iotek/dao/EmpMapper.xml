@@ -36,7 +36,7 @@
     </select>
     <select id="getEmpByDepaAndPage" resultMap="empMap">
         SELECT E_ID, E_UNAME, E_SEX, E_BIRTH, E_BP, E_EDU, E_MAJOR, E_EMAIL,
-        E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE,P_PNAME,D_DNAME from (
+        E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE,P_PNAME,D_DNAME,P_ID,D_ID  from (
         SELECT rownum rn,e.*,d.*,p.*from T_EMP e,T_DEPA d,T_POSITION p where E_DID=#{0} AND (E_STATE=0 OR E_STATE=1)
         and E_DID=D_ID AND E_PID=P_ID)a
         where rn between #{1} and #{2}
@@ -46,7 +46,7 @@
     </select>
     <select id="getEmpByPositionAndPage" resultMap="empMap">
         SELECT E_ID, E_UNAME, E_SEX, E_BIRTH, E_BP, E_EDU, E_MAJOR, E_EMAIL,
-        E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE,P_PNAME,D_DNAME from (
+        E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE,P_PNAME,D_DNAME,P_ID,D_ID from (
         SELECT rownum rn,e.*,d.*,p.*from T_EMP e,T_DEPA d,T_POSITION p where E_PID=#{0} and (E_STATE=0 OR E_STATE=1)
         and E_DID=D_ID AND E_PID=P_ID)a
         where rn between #{1} and #{2}
@@ -62,7 +62,7 @@
     </select>
     <select id="getEmpByStateAndPage" resultMap="empMap">
         SELECT E_ID, E_UNAME, E_SEX, E_BIRTH, E_BP, E_EDU, E_MAJOR, E_EMAIL,
-        E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE,P_PNAME,D_DNAME,E_ENTRYTIME from (
+        E_PHONE, E_SCHOOL, E_CARDNO,E_ENAME,E_PASS,E_DID,E_PID,E_STATE,P_PNAME,D_DNAME,E_ENTRYTIME,P_ID,D_ID from (
         SELECT rownum rn,e.*,d.*,p.*from T_EMP e,T_DEPA d,T_POSITION p where E_STATE=#{0}
         and E_DID=D_ID AND E_PID=P_ID)a
         where rn between #{1} and #{2}

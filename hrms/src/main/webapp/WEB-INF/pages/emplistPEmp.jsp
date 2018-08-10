@@ -79,10 +79,11 @@
         <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <a href="empgetEmpByPosition?currentPage=<%=i%>" style="display:block;text-align:center;"><%=i%></a>
+    <a href="empgetEmpByPosition?currentPage=<%=i%>&pid2=<%=empList.get(0).getPosition().getId()%>" style="display:block;text-align:center;"><%=i%></a>
         <%
         }
     %>
     <a href="esuccess">返回员工主页</a>
+</div>
 </body>
 </html>

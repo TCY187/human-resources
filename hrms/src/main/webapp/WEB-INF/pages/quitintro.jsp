@@ -14,6 +14,16 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <script type="text/javascript">
+        function check() {
+            if (document.getElementById('intro').value==""){
+                alert('请输入原因！');
+                document.getElementById('intro').focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
     <style>
         #div1{
             margin-left: auto;
@@ -33,8 +43,8 @@
 <jsp:include page="/head.jsp"></jsp:include>
 <br/>
 <div id="div1">
-<form action="quit" method="post">
-    离职原因：<input type="text" name="intro"/><br/>
+<form action="quit" method="post" onsubmit="return check()">
+    离职原因：<input type="text" name="intro" id="intro"/><br/>
     <input type="submit" value="确认离职">
 </form>
 </div>

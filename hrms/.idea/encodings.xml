@@ -4,6 +4,7 @@
     <file url="file://$PROJECT_DIR$" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/iotek/controller/CulController.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/iotek/controller/EmpController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/iotek/controller/RecrController.java" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/webapp/js" charset="UTF-8" />
     <file url="PROJECT" charset="GBK" />
   </component>

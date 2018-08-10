@@ -15,6 +15,16 @@
     <base href="<%=basePath%>"/>
     <title></title>
     <style>
+        #div1{
+            width: auto;
+            height: 50px;
+            /*background-color: brown;*/
+        }
+        #div2{
+            width: auto;
+            height: 50px;
+            /*background-color: lightblue;*/
+        }
         div{
             width: 1000px;
             margin-left: auto;
@@ -42,32 +52,34 @@
 <br/>
 <jsp:include page="/head.jsp"></jsp:include>
 <br/>
-<div>
-<form action="getGetCV" method="post">
+<div id="div1">
+<form action="getGetCV" method="post" style="display: inline">
     <input type="submit" value="查看投递简历">
 </form>
-<form action="getmanInt" method="post">
+<form action="getmanInt" method="post" style="display: inline">
     <input type="submit" value="查看面试邀请">
 </form>
-<form action="getRecr" method="post">
+<form action="getRecr" method="post" style="display: inline">
     <input type="submit" value="查看招聘信息">
 </form>
-<form action="operateDepa" method="post">
+<form action="operateDepa" method="post" style="display: inline">
     <input type="submit" value="查看在职员工">
 </form>
-<form action="getquitEmp" method="post">
+<form action="getquitEmp" method="post" style="display: inline">
     <input type="submit" value="查看离职员工">
 </form>
-<form action="aboutCul" method="post">
+</div>
+<div id="div2">
+<form action="aboutCul" method="post" style="display: inline">
     <input type="submit" value="查看相关培训">
 </form>
-<form action="payMoney" method="post">
+<form action="payMoney" method="post" style="display: inline">
     <input type="submit" value="进行薪资结算">
 </form>
-<form action="zhuanzheng" method="post">
+<form action="zhuanzheng" method="post" style="display: inline">
     <input type="submit" value="进行员工转正">
 </form>
-    <form action="gzfy" method="post">
+    <form action="gzfy" method="post" style="display: inline">
         <input type="submit" value="查看工资复议">
     </form>
     <br/><span>${gzfyerror}</span>

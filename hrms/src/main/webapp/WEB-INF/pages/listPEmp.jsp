@@ -114,7 +114,7 @@
         <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <a href="getEmpByPosition?currentPage=<%=i%>" style="display:block;text-align:center;"><%=i%></a>
+    <a href="getEmpByPosition?currentPage=<%=i%>&pid2=<%=empList.get(0).getPosition().getId()%>" style="display:block;text-align:center;"><%=i%></a>
         <%
         }
     %>

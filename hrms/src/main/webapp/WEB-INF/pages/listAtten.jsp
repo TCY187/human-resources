@@ -79,7 +79,7 @@
     <%
         for (int i = 1; i <=totalPages; i++) {
     %>
-    <a href="mgetAttenByEmp?currentPage=<%=i%>" style="display:block;text-align:center;"><%=i%></a>
+    <a href="mgetAttenByEmp?currentPage=<%=i%>&eid4=<%=attendanceList.get(0).getEmp().getId()%>" style="display:block;text-align:center;"><%=i%></a>
     <%
         }
     %>

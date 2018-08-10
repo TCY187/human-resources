@@ -14,6 +14,21 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <script>
+        function check(){
+            var m=document.getElementsByTagName("input");
+            for(var i=0;i<m.length;i++)
+            {
+                if(m[i].value==""||m[i].value==null)
+                {
+                    alert("请填写所有的空格！");
+                    return false;
+                }
+            }
+            alert("成功！");
+        }
+
+    </script>
     <style>
         div{
             width: 1000px;
@@ -43,7 +58,7 @@
 <jsp:include page="/head.jsp"></jsp:include>
 <br/>
 <div id="div1">
-    <form action="saveCV1" method="post">
+    <form action="saveCV1" method="post" onsubmit="return check()">
     <h1><input type="text" name="cvname"></h1>
         <table border="1" cellspacing="0">
             <tr>

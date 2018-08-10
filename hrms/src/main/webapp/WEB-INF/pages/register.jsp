@@ -75,8 +75,6 @@
     账号：<input type="text" name="name" id="uname" onblur="checkName()"/><span id="sp"></span><br/>
     <%--账号：<input id="name" type="text" name="name"/><br/>--%>
     密码：<input id="pass" type="password" name="pass" /><br/>
-    性别：<input id="man" type="radio" checked="checked" name="sex" value="男"/>男
-    <input id="woman" type="radio" name="sex" value="女"/>女<br/>
     <input type="submit" value="注册">
 </form>
 <span>${regerror}</span>

@@ -14,6 +14,16 @@
 <head>
     <base href="<%=basePath%>"/>
     <title></title>
+    <script type="text/javascript">
+        function check() {
+            if (document.getElementById('desc').value==""){
+                alert('请输入要求！');
+                document.getElementById('desc').focus();
+                return false;
+            }
+            return true;
+        }
+    </script>
     <style>
         #div1{
             margin-left: auto;
@@ -33,8 +43,8 @@
 <jsp:include page="/head.jsp"></jsp:include>
 <br/>
 <div id="div1">
-    <form action="addRecr2" method="post">
-        要求：<input type="text" name="desc"/><br/>
+    <form action="addRecr2" method="post" onsubmit="return check()">
+        要求：<input type="text" name="desc" id="desc"/><br/>
         数量：<input type="number" step="1" name="num" id="num" value="1" min="1"><br/>
         <input type="submit" value="确定">
     </form>

@@ -43,7 +43,7 @@ public class RecrController {
     }
     @RequestMapping("/getRecr")
     public String getRecr(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session){
-        List<Recr> recrList = recrService.getRecrByState(1);//查看已发布的
+        List<Recr> recrList = recrService.getRecrByState(1);//?????????
         int totalNum=recrList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
@@ -56,7 +56,7 @@ public class RecrController {
     }
     @RequestMapping("/getRecr0")
     public String getRecr0(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session){
-        List<Recr> recrList = recrService.getRecrByState(0);//查看未发布的
+        List<Recr> recrList = recrService.getRecrByState(0);//??δ??????
         int totalNum=recrList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
@@ -65,12 +65,12 @@ public class RecrController {
         List<Recr> recrList1 = recrService.getRecrByStateAndPage(0,begin,end);
         session.setAttribute("recr0List",recrList1);
         session.setAttribute("recr0totalPages",totalPages);
-        return "listRecr0";//未发布
+        return "listRecr0";//δ????
     }
     @RequestMapping("/deleteRecr")
     public String deleteRecr(@RequestParam(value = "currentPage",defaultValue = "1")int currentPage, HttpSession session,int rid2){
         boolean flag = recrService.deleteRecrByRid(rid2);
-        List<Recr> recrList = recrService.getRecrByState(0);//查看未发布的
+        List<Recr> recrList = recrService.getRecrByState(0);//??δ??????
         int totalNum=recrList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
@@ -79,7 +79,7 @@ public class RecrController {
         List<Recr> recrList1 = recrService.getRecrByStateAndPage(0,begin,end);
         session.setAttribute("recr0List",recrList1);
         session.setAttribute("recr0totalPages",totalPages);
-        return "listRecr0";//未发布
+        return "listRecr0";//δ????
     }
     @RequestMapping("/addRecr1")
     public String addRecr1(int selectDep,int selectPosition,HttpSession session){
@@ -97,7 +97,7 @@ public class RecrController {
         recr.setPosition(position);
         recr.setState(0);
         recrService.saveRecr(recr);
-        List<Recr> recrList = recrService.getRecrByState(0);//查看非发布的
+        List<Recr> recrList = recrService.getRecrByState(0);//?????????
         int totalNum=recrList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
@@ -106,14 +106,14 @@ public class RecrController {
         List<Recr> recrList1 = recrService.getRecrByStateAndPage(0,begin,end);
         session.setAttribute("recr0List",recrList1);
         session.setAttribute("recr0totalPages",totalPages);
-        return "listRecr0";//未发布
+        return "listRecr0";//δ????
     }
     @RequestMapping("/issueRecr")
     public String issueRecr(HttpSession session,int rid,@RequestParam(value = "currentPage",defaultValue = "1")int currentPage){
         Recr recr = recrService.getRecrByRid(rid);
         recr.setState(1);
         recrService.updateRecr(recr);
-        List<Recr> recrList = recrService.getRecrByState(0);//查看非发布的
+        List<Recr> recrList = recrService.getRecrByState(0);//?????????
         int totalNum=recrList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
@@ -122,14 +122,14 @@ public class RecrController {
         List<Recr> recrList1 = recrService.getRecrByStateAndPage(0,begin,end);
         session.setAttribute("recr0List",recrList1);
         session.setAttribute("recr0totalPages",totalPages);
-        return "listRecr0";//未发布
+        return "listRecr0";//δ????
     }
     @RequestMapping("/recallRecr")
     public String recallRecr(HttpSession session,int rid,@RequestParam(value = "currentPage",defaultValue = "1")int currentPage){
         Recr recr = recrService.getRecrByRid(rid);
         recr.setState(0);
         recrService.updateRecr(recr);
-        List<Recr> recrList = recrService.getRecrByState(1);//查看非发布的
+        List<Recr> recrList = recrService.getRecrByState(1);//?????????
         int totalNum=recrList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
@@ -152,7 +152,7 @@ public class RecrController {
         recr1.setDesc(recr.getDesc());
         recr1.setNum(recr.getNum());
         recrService.updateRecr(recr1);
-        List<Recr> recrList = recrService.getRecrByState(0);//查看非发布的
+        List<Recr> recrList = recrService.getRecrByState(0);//?????????
         int totalNum=recrList.size();
         int pageSize=5;
         int totalPages=totalNum%pageSize==0?totalNum/pageSize:totalNum/pageSize+1;
@@ -161,6 +161,6 @@ public class RecrController {
         List<Recr> recrList1 = recrService.getRecrByStateAndPage(0,begin,end);
         session.setAttribute("recr0List",recrList1);
         session.setAttribute("recr0totalPages",totalPages);
-        return "listRecr0";//未发布
+        return "listRecr0";//δ????
     }
 }
